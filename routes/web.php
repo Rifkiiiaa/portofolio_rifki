@@ -39,4 +39,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/services', [AdminController::class, 'serviceIndex'])->name('services');
     Route::post('/services', [AdminController::class, 'serviceStore'])->name('services.store');
     Route::delete('/services/{service}', [AdminController::class, 'serviceDestroy'])->name('services.destroy');
+
+    Route::get('/account', [AdminController::class, 'accountEdit'])->name('account');
+    Route::put('/account', [AdminController::class, 'accountUpdate'])->name('account.update');
 });

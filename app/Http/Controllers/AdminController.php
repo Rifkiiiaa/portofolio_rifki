@@ -8,6 +8,8 @@ use App\Models\Project;
 use App\Models\Testimonial;
 use App\Models\Service;
 use App\Models\FileAttachment;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -230,5 +232,37 @@ class AdminController extends Controller
     {
         $service->delete();
         return back()->with('success', 'Jasa berhasil dihapus.');
+    }
+
+    // ── Account ──────────────────────────────────
+    public function accountEdit()
+    {
+        return view('admin.account', ['user' => Auth::user()]);
+    }
+
+    public function accountUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'email'    => ['required', 'email', 'max:150', 'unique:users,email,' . $user->id],
+            'password' => ['nullable', 'min:8', 'confirmed'],
+        ], [
+            'email.required'    => 'Email wajib diisi.',
+            'email.email'       => 'Format email tidak valid.',
+            'email.unique'      => 'Email sudah digunakan.',
+            'password.min'      => 'Password minimal 8 karakter.',
+            'password.confirmed'=> 'Konfirmasi password tidak cocok.',
+        ]);
+
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return back()->with('success', 'Akun berhasil diperbarui.');
     }
 }
