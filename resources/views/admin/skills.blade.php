@@ -4,80 +4,80 @@
 
 @section('content')
 <div class="max-w-4xl">
-    <!-- Form Tambah -->
-    <form method="POST" action="{{ route('admin.skills.store') }}" class="bg-white rounded-lg shadow p-4 md:p-6 mb-6">
+    {{-- Form --}}
+    <form method="POST" action="{{ route('admin.skills.store') }}" class="bg-white rounded-2xl border border-slate-100 p-5 md:p-7 mb-6">
         @csrf
-        <h3 class="text-sm font-semibold text-gray-700 mb-3">Tambah Keahlian Baru</h3>
+        <h3 class="text-sm font-display font-bold text-navy mb-4">Tambah Keahlian Baru</h3>
         <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-end">
             <div class="flex-1">
-                <label class="block text-xs text-gray-500 mb-1">Nama Keahlian</label>
+                <label class="block text-xs font-medium text-slate-500 mb-1.5">Nama Keahlian</label>
                 <input type="text" name="label" required placeholder="contoh: Laravel"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
             </div>
             <div class="w-full sm:w-48">
-                <label class="block text-xs text-gray-500 mb-1">Grup</label>
+                <label class="block text-xs font-medium text-slate-500 mb-1.5">Grup</label>
                 <select name="group" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
                     <option value="Backend">Backend</option>
                     <option value="Frontend">Frontend</option>
                     <option value="Tools">Tools</option>
                 </select>
             </div>
             <button type="submit"
-                    class="px-5 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition whitespace-nowrap">
+                    class="px-5 py-3 bg-gradient-to-r from-brand to-purple-500 hover:shadow-lg hover:shadow-brand/30 text-white text-sm font-semibold rounded-xl transition-all whitespace-nowrap">
                 + Tambah
             </button>
         </div>
     </form>
 
-    <!-- Daftar Keahlian -->
-    <div class="bg-white rounded-lg shadow overflow-hidden">
-        {{-- Desktop table --}}
+    {{-- List --}}
+    <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden">
+        {{-- Desktop --}}
         <table class="w-full text-sm hidden md:table">
-            <thead class="bg-gray-50 text-gray-600">
+            <thead class="bg-slate-50/80">
                 <tr>
-                    <th class="text-left px-6 py-3 font-medium">Nama</th>
-                    <th class="text-left px-6 py-3 font-medium">Grup</th>
-                    <th class="text-right px-6 py-3 font-medium">Aksi</th>
+                    <th class="text-left px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Nama</th>
+                    <th class="text-left px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Grup</th>
+                    <th class="text-right px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
+            <tbody class="divide-y divide-slate-100">
                 @forelse($skills as $skill)
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-3">{{ $skill->label }}</td>
-                        <td class="px-6 py-3">
-                            <span class="inline-block px-2 py-0.5 rounded text-xs font-medium
-                                {{ $skill->group === 'Backend' ? 'bg-blue-100 text-blue-700' :
-                                   ($skill->group === 'Frontend' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700') }}">
+                    <tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-6 py-3.5 font-medium text-slate-700">{{ $skill->label }}</td>
+                        <td class="px-6 py-3.5">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold
+                                {{ $skill->group === 'Backend' ? 'bg-brand/10 text-brand' :
+                                   ($skill->group === 'Frontend' ? 'bg-purple-500/10 text-purple-600' : 'bg-amber-500/10 text-amber-600') }}">
                                 {{ $skill->group }}
                             </span>
                         </td>
-                        <td class="px-6 py-3 text-right">
+                        <td class="px-6 py-3.5 text-right">
                             <form method="POST" action="{{ route('admin.skills.destroy', $skill) }}" class="inline"
                                   onsubmit="return confirm('Hapus keahlian ini?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:text-red-700 text-xs font-medium">Hapus</button>
+                                <button type="submit" class="text-red-400 hover:text-red-600 text-xs font-semibold px-2 py-1 hover:bg-red-50 rounded-lg transition-all">Hapus</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="px-6 py-8 text-center text-gray-400">Belum ada keahlian.</td>
+                        <td colspan="3" class="px-6 py-12 text-center text-slate-400">Belum ada keahlian.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
 
-        {{-- Mobile cards --}}
-        <div class="md:hidden divide-y divide-gray-100">
+        {{-- Mobile --}}
+        <div class="md:hidden divide-y divide-slate-100">
             @forelse($skills as $skill)
-                <div class="px-4 py-3 flex items-center justify-between">
+                <div class="px-4 py-3.5 flex items-center justify-between">
                     <div>
-                        <div class="font-medium text-sm">{{ $skill->label }}</div>
-                        <span class="inline-block px-2 py-0.5 mt-1 rounded text-xs font-medium
-                            {{ $skill->group === 'Backend' ? 'bg-blue-100 text-blue-700' :
-                               ($skill->group === 'Frontend' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700') }}">
+                        <div class="font-medium text-sm text-slate-700">{{ $skill->label }}</div>
+                        <span class="inline-flex items-center px-2 py-0.5 mt-1 rounded-lg text-xs font-semibold
+                            {{ $skill->group === 'Backend' ? 'bg-brand/10 text-brand' :
+                               ($skill->group === 'Frontend' ? 'bg-purple-500/10 text-purple-600' : 'bg-amber-500/10 text-amber-600') }}">
                             {{ $skill->group }}
                         </span>
                     </div>
@@ -85,11 +85,11 @@
                           onsubmit="return confirm('Hapus keahlian ini?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-500 hover:text-red-700 text-xs font-medium px-2 py-1">Hapus</button>
+                        <button type="submit" class="text-red-400 hover:text-red-600 text-xs font-semibold px-2 py-1 hover:bg-red-50 rounded-lg transition-all">Hapus</button>
                     </form>
                 </div>
             @empty
-                <div class="px-4 py-8 text-center text-gray-400 text-sm">Belum ada keahlian.</div>
+                <div class="px-4 py-12 text-center text-slate-400 text-sm">Belum ada keahlian.</div>
             @endforelse
         </div>
     </div>

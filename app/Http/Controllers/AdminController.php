@@ -14,12 +14,28 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
+        $profile = Profile::first();
+
+        $profileFields = ['name', 'role', 'tagline', 'bio', 'photo', 'cv_path', 'location', 'email', 'phone'];
+        $filled = 0;
+        foreach ($profileFields as $field) {
+            if (!empty($profile->{$field})) $filled++;
+        }
+        $socials = $profile->socials ?? [];
+        if (!empty($socials['github']) || !empty($socials['linkedin']) || !empty($socials['whatsapp'])) {
+            $filled++;
+        }
+        $profilePercent = round(($filled / (count($profileFields) + 1)) * 100);
+
         return view('admin.dashboard', [
-            'profile'      => Profile::first(),
-            'skillCount'   => Skill::count(),
-            'projectCount' => Project::count(),
-            'testimonialCount' => Testimonial::count(),
-            'serviceCount' => Service::count(),
+            'profile'         => $profile,
+            'skillCount'      => Skill::count(),
+            'projectCount'    => Project::count(),
+            'testimonialCount'=> Testimonial::count(),
+            'serviceCount'    => Service::count(),
+            'profilePercent'  => $profilePercent,
+            'filledFields'    => $filled,
+            'totalFields'     => count($profileFields) + 1,
         ]);
     }
 
