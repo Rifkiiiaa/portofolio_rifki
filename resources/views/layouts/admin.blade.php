@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin — IkiCode</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -183,13 +184,48 @@
         </main>
     </div>
 
+    <div id="confirm-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-navy/40 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
+            <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+                <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </div>
+            <h3 id="modal-title" class="font-display font-bold text-navy text-lg mb-1">Hapus?</h3>
+            <p id="modal-desc" class="text-sm text-slate-500 mb-6">Apakah Anda yakin ingin menghapus ini?</p>
+            <div class="flex gap-3">
+                <button onclick="closeModal()" class="flex-1 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl transition-all">Batal</button>
+                <button id="modal-confirm-btn" class="flex-1 px-4 py-2.5 bg-red-500 hover:bg-red-600 text-white text-sm font-semibold rounded-xl transition-all">Hapus</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function toggleSidebar() {
             document.getElementById('app').classList.toggle('sidebar-open');
         }
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') document.getElementById('app').classList.remove('sidebar-open');
+            if (e.key === 'Escape') {
+                document.getElementById('app').classList.remove('sidebar-open');
+                closeModal();
+            }
         });
+
+        function openModal(title, desc, onConfirm) {
+            var modal = document.getElementById('confirm-modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = desc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('modal-confirm-btn').onclick = function() {
+                closeModal();
+                onConfirm();
+            };
+        }
+        function closeModal() {
+            var modal = document.getElementById('confirm-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
     </script>
 </body>
 </html>

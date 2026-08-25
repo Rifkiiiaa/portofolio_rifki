@@ -55,11 +55,10 @@
                             </div>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('admin.testimonials.destroy', $testimonial) }}"
-                          onsubmit="return confirm('Hapus testimoni ini?')" class="flex-shrink-0">
+                    <form id="del-testi-{{ $testimonial->id }}" method="POST" action="{{ route('admin.testimonials.destroy', $testimonial) }}" class="flex-shrink-0">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
+                        <button type="button" onclick="openModal('Hapus Testimoni', 'Testimoni dari {{ addslashes($testimonial->name) }} akan dihapus permanen.', function(){ document.getElementById('del-testi-{{ $testimonial->id }}').submit(); })" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
                     </form>
                 </div>
             </div>

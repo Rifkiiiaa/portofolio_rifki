@@ -37,11 +37,10 @@
                             <p class="text-sm text-slate-500 mt-1.5 line-clamp-2">{{ $service->description }}</p>
                         @endif
                     </div>
-                    <form method="POST" action="{{ route('admin.services.destroy', $service) }}"
-                          onsubmit="return confirm('Hapus jasa ini?')" class="flex-shrink-0">
+                    <form id="del-service-{{ $service->id }}" method="POST" action="{{ route('admin.services.destroy', $service) }}" class="flex-shrink-0">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
+                        <button type="button" onclick="openModal('Hapus Jasa', 'Jasa {{ addslashes($service->title) }} akan dihapus permanen.', function(){ document.getElementById('del-service-{{ $service->id }}').submit(); })" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
                     </form>
                 </div>
             </div>

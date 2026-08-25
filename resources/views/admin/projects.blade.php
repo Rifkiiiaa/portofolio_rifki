@@ -72,11 +72,10 @@
                         <div class="flex items-center gap-1 flex-shrink-0">
                             <a href="{{ route('admin.projects.edit', $project) }}"
                                class="text-xs font-semibold text-brand hover:bg-brand/5 px-3 py-1.5 rounded-lg transition-all">Edit</a>
-                            <form method="POST" action="{{ route('admin.projects.destroy', $project) }}"
-                                  onsubmit="return confirm('Hapus proyek ini?')">
+                            <form id="del-project-{{ $project->id }}" method="POST" action="{{ route('admin.projects.destroy', $project) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
+                                <button type="button" onclick="openModal('Hapus Proyek', 'Proyek {{ addslashes($project->title) }} akan dihapus permanen.', function(){ document.getElementById('del-project-{{ $project->id }}').submit(); })" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
                             </form>
                         </div>
                     </div>

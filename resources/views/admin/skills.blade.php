@@ -53,11 +53,10 @@
                             </span>
                         </td>
                         <td class="px-6 py-3.5 text-right">
-                            <form method="POST" action="{{ route('admin.skills.destroy', $skill) }}" class="inline"
-                                  onsubmit="return confirm('Hapus keahlian ini?')">
+                            <form id="del-skill-{{ $skill->id }}" method="POST" action="{{ route('admin.skills.destroy', $skill) }}" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-400 hover:text-red-600 text-xs font-semibold px-2 py-1 hover:bg-red-50 rounded-lg transition-all">Hapus</button>
+                                <button type="button" onclick="openModal('Hapus Keahlian', 'Keahlian {{ addslashes($skill->label) }} akan dihapus permanen.', function(){ document.getElementById('del-skill-{{ $skill->id }}').submit(); })" class="text-red-400 hover:text-red-600 text-xs font-semibold px-2 py-1 hover:bg-red-50 rounded-lg transition-all">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -81,11 +80,10 @@
                             {{ $skill->group }}
                         </span>
                     </div>
-                    <form method="POST" action="{{ route('admin.skills.destroy', $skill) }}"
-                          onsubmit="return confirm('Hapus keahlian ini?')">
+                    <form id="del-skill-m-{{ $skill->id }}" method="POST" action="{{ route('admin.skills.destroy', $skill) }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-400 hover:text-red-600 text-xs font-semibold px-2 py-1 hover:bg-red-50 rounded-lg transition-all">Hapus</button>
+                        <button type="button" onclick="openModal('Hapus Keahlian', 'Keahlian {{ addslashes($skill->label) }} akan dihapus permanen.', function(){ document.getElementById('del-skill-m-{{ $skill->id }}').submit(); })" class="text-red-400 hover:text-red-600 text-xs font-semibold px-2 py-1 hover:bg-red-50 rounded-lg transition-all">Hapus</button>
                     </form>
                 </div>
             @empty

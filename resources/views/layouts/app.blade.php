@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IkiCode — {{ $profile['role'] ?? 'Portfolio' }}</title>
     <meta name="description" content="{{ $profile['tagline'] ?? '' }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
