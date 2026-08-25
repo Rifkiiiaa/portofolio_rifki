@@ -3,7 +3,7 @@
 @section('header', 'Edit Proyek')
 
 @section('content')
-<form method="POST" action="{{ route('admin.projects.update', $project) }}" class="max-w-2xl">
+<form method="POST" action="{{ route('admin.projects.update', $project) }}">
     @csrf
     @method('PUT')
 

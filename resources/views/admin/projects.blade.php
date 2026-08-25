@@ -3,7 +3,7 @@
 @section('header', 'Kelola Proyek')
 
 @section('content')
-<div class="max-w-5xl">
+<div>
     {{-- Form --}}
     <form method="POST" action="{{ route('admin.projects.store') }}" class="bg-white rounded-2xl border border-slate-100 p-5 md:p-7 mb-6">
         @csrf

@@ -3,7 +3,7 @@
 @section('header', 'Edit Profil')
 
 @section('content')
-<form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data" class="max-w-2xl">
+<form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

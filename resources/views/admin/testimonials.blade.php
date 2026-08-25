@@ -3,7 +3,7 @@
 @section('header', 'Kelola Testimoni')
 
 @section('content')
-<div class="max-w-4xl">
+<div>
     {{-- Form --}}
     <form method="POST" action="{{ route('admin.testimonials.store') }}" class="bg-white rounded-2xl border border-slate-100 p-5 md:p-7 mb-6">
         @csrf
