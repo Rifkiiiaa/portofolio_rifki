@@ -125,6 +125,132 @@
         .nav-link:hover::after {
             width: 100%;
         }
+
+        /* ── Certificate Slider ── */
+        .cert-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-wrapper::before,
+        .cert-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 120px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .cert-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--cert-bg, #F8FAFC), transparent);
+        }
+        .cert-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--cert-bg, #F8FAFC), transparent);
+        }
+        .cert-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: certScroll var(--cert-speed, 35s) linear infinite;
+        }
+        .cert-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes certScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .cert-card {
+            width: 320px;
+            flex-shrink: 0;
+            perspective: 800px;
+        }
+        .cert-card-inner {
+            position: relative;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .cert-card:hover .cert-card-inner {
+            transform: translateY(-8px) rotateX(2deg) rotateY(-1deg);
+            box-shadow:
+                0 25px 60px -12px rgba(99, 102, 241, 0.2),
+                0 8px 20px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* glow border on hover */
+        .cert-card-inner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #6366F1, #A855F7, #EC4899, #6366F1);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: borderGlow 3s ease infinite;
+        }
+        .cert-card:hover .cert-card-inner::before {
+            opacity: 1;
+        }
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50%      { background-position: 100% 50%; }
+        }
+
+        /* shine sweep on image */
+        .cert-shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg,
+                transparent 40%,
+                rgba(255,255,255,0.25) 45%,
+                rgba(255,255,255,0.05) 50%,
+                transparent 55%
+            );
+            transform: translateX(-100%);
+            z-index: 2;
+        }
+        .cert-card:hover .cert-shine {
+            animation: shineSwipe 0.8s ease forwards;
+        }
+        @keyframes shineSwipe {
+            0%   { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* floating bob */
+        .cert-card:nth-child(odd)  { animation: certBob 4s ease-in-out infinite; }
+        .cert-card:nth-child(even) { animation: certBob 4s ease-in-out 1s infinite; }
+        @keyframes certBob {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-6px); }
+        }
+
+        /* issuer badge */
+        .cert-issuer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08));
+            color: #6366F1;
+        }
     </style>
 </head>
 <body class="bg-paper text-slate-800 antialiased">

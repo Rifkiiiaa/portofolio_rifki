@@ -38,7 +38,27 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('/services', [AdminController::class, 'serviceIndex'])->name('services');
     Route::post('/services', [AdminController::class, 'serviceStore'])->name('services.store');
+    Route::get('/services/{service}/edit', [AdminController::class, 'serviceEdit'])->name('services.edit');
+    Route::put('/services/{service}', [AdminController::class, 'serviceUpdate'])->name('services.update');
     Route::delete('/services/{service}', [AdminController::class, 'serviceDestroy'])->name('services.destroy');
+
+    Route::get('/educations', [AdminController::class, 'educationIndex'])->name('educations');
+    Route::post('/educations', [AdminController::class, 'educationStore'])->name('educations.store');
+    Route::get('/educations/{education}/edit', [AdminController::class, 'educationEdit'])->name('educations.edit');
+    Route::put('/educations/{education}', [AdminController::class, 'educationUpdate'])->name('educations.update');
+    Route::delete('/educations/{education}', [AdminController::class, 'educationDestroy'])->name('educations.destroy');
+
+    Route::get('/certifications', [AdminController::class, 'certificationIndex'])->name('certifications');
+    Route::post('/certifications', [AdminController::class, 'certificationStore'])->name('certifications.store');
+    Route::get('/certifications/{certification}/edit', [AdminController::class, 'certificationEdit'])->name('certifications.edit');
+    Route::put('/certifications/{certification}', [AdminController::class, 'certificationUpdate'])->name('certifications.update');
+    Route::delete('/certifications/{certification}', [AdminController::class, 'certificationDestroy'])->name('certifications.destroy');
+
+    Route::get('/experiences', [AdminController::class, 'experienceIndex'])->name('experiences');
+    Route::post('/experiences', [AdminController::class, 'experienceStore'])->name('experiences.store');
+    Route::get('/experiences/{experience}/edit', [AdminController::class, 'experienceEdit'])->name('experiences.edit');
+    Route::put('/experiences/{experience}', [AdminController::class, 'experienceUpdate'])->name('experiences.update');
+    Route::delete('/experiences/{experience}', [AdminController::class, 'experienceDestroy'])->name('experiences.destroy');
 
     Route::get('/account', [AdminController::class, 'accountEdit'])->name('account');
     Route::put('/account', [AdminController::class, 'accountUpdate'])->name('account.update');

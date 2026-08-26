@@ -7,6 +7,9 @@ use App\Models\Skill;
 use App\Models\Project;
 use App\Models\Testimonial;
 use App\Models\Service;
+use App\Models\Education;
+use App\Models\Certification;
+use App\Models\Experience;
 
 class PortfolioController extends Controller
 {
@@ -38,6 +41,33 @@ class PortfolioController extends Controller
             'description' => $s->description,
         ])->toArray();
 
+        $educations = Education::all()->map(fn ($e) => [
+            'institution'   => $e->institution,
+            'degree'        => $e->degree,
+            'field_of_study'=> $e->field_of_study,
+            'start_year'    => $e->start_year,
+            'end_year'      => $e->end_year,
+            'description'   => $e->description,
+        ])->toArray();
+
+        $certifications = Certification::all()->map(fn ($c) => [
+            'name'        => $c->name,
+            'issuer'      => $c->issuer,
+            'date'        => $c->date,
+            'description' => $c->description,
+            'url'         => $c->url,
+            'image'       => $c->image,
+        ])->toArray();
+
+        $experiences = Experience::all()->map(fn ($e) => [
+            'company'     => $e->company,
+            'position'    => $e->position,
+            'start_date'  => $e->start_date,
+            'end_date'    => $e->end_date,
+            'description' => $e->description,
+            'logo'        => $e->logo,
+        ])->toArray();
+
         $profileData = $profile ? [
             'name'     => $profile->name,
             'role'     => $profile->role,
@@ -57,6 +87,9 @@ class PortfolioController extends Controller
             'projects'     => $projects,
             'testimonials' => $testimonials,
             'services'     => $services,
+            'educations'   => $educations,
+            'certifications' => $certifications,
+            'experiences'  => $experiences,
         ]);
     }
 }

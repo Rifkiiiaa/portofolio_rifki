@@ -7,6 +7,9 @@ use App\Models\Skill;
 use App\Models\Project;
 use App\Models\Testimonial;
 use App\Models\Service;
+use App\Models\Education;
+use App\Models\Experience;
+use App\Models\Certification;
 use App\Models\FileAttachment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,6 +38,9 @@ class AdminController extends Controller
             'projectCount'    => Project::count(),
             'testimonialCount'=> Testimonial::count(),
             'serviceCount'    => Service::count(),
+            'educationCount'  => Education::count(),
+            'certificationCount' => Certification::count(),
+            'experienceCount'   => Experience::count(),
             'profilePercent'  => $profilePercent,
             'filledFields'    => $filled,
             'totalFields'     => count($profileFields) + 1,
@@ -59,9 +65,11 @@ class AdminController extends Controller
             'location' => ['nullable', 'string', 'max:150'],
             'email'    => ['nullable', 'email', 'max:150'],
             'phone'    => ['nullable', 'string', 'max:50'],
-            'socials.github'   => ['nullable', 'url'],
-            'socials.linkedin' => ['nullable', 'url'],
-            'socials.whatsapp' => ['nullable', 'url'],
+            'socials.github'    => ['nullable', 'url'],
+            'socials.linkedin'  => ['nullable', 'url'],
+            'socials.instagram' => ['nullable', 'url'],
+            'socials.tiktok'    => ['nullable', 'url'],
+            'socials.whatsapp'  => ['nullable', 'url'],
         ]);
 
         $socials = collect($data['socials'] ?? [])->filter()->toArray();
@@ -228,10 +236,238 @@ class AdminController extends Controller
         return back()->with('success', 'Jasa berhasil ditambahkan.');
     }
 
+    public function serviceEdit(Service $service)
+    {
+        return view('admin.service-edit', ['service' => $service]);
+    }
+
+    public function serviceUpdate(Request $request, Service $service)
+    {
+        $data = $request->validate([
+            'title'       => ['required', 'string', 'max:150'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        $service->update($data);
+
+        return redirect()->route('admin.services')->with('success', 'Jasa berhasil diperbarui.');
+    }
+
     public function serviceDestroy(Service $service)
     {
         $service->delete();
         return back()->with('success', 'Jasa berhasil dihapus.');
+    }
+
+    // ── Educations ───────────────────────────────
+    public function educationIndex()
+    {
+        return view('admin.educations', ['educations' => Education::latest()->get()]);
+    }
+
+    public function educationStore(Request $request)
+    {
+        $data = $request->validate([
+            'institution'    => ['required', 'string', 'max:150'],
+            'degree'         => ['nullable', 'string', 'max:100'],
+            'field_of_study' => ['nullable', 'string', 'max:100'],
+            'start_year'     => ['nullable', 'string', 'max:10'],
+            'end_year'       => ['nullable', 'string', 'max:10'],
+            'description'    => ['nullable', 'string'],
+        ]);
+
+        Education::create($data);
+
+        return back()->with('success', 'Riwayat pendidikan berhasil ditambahkan.');
+    }
+
+    public function educationEdit(Education $education)
+    {
+        return view('admin.education-edit', ['education' => $education]);
+    }
+
+    public function educationUpdate(Request $request, Education $education)
+    {
+        $data = $request->validate([
+            'institution'    => ['required', 'string', 'max:150'],
+            'degree'         => ['nullable', 'string', 'max:100'],
+            'field_of_study' => ['nullable', 'string', 'max:100'],
+            'start_year'     => ['nullable', 'string', 'max:10'],
+            'end_year'       => ['nullable', 'string', 'max:10'],
+            'description'    => ['nullable', 'string'],
+        ]);
+
+        $education->update($data);
+
+        return redirect()->route('admin.educations')->with('success', 'Riwayat pendidikan berhasil diperbarui.');
+    }
+
+    public function educationDestroy(Education $education)
+    {
+        $education->delete();
+        return back()->with('success', 'Riwayat pendidikan berhasil dihapus.');
+    }
+
+    // ── Certifications ──────────────────────────
+    public function certificationIndex()
+    {
+        return view('admin.certifications', ['certifications' => Certification::latest()->get()]);
+    }
+
+    public function certificationStore(Request $request)
+    {
+        $data = $request->validate([
+            'name'        => ['required', 'string', 'max:150'],
+            'issuer'      => ['nullable', 'string', 'max:100'],
+            'date'        => ['nullable', 'string', 'max:20'],
+            'description' => ['nullable', 'string'],
+            'url'         => ['nullable', 'url'],
+            'image'       => ['nullable', 'file', 'image', 'max:5120'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $attachment = FileAttachment::create([
+                'name'      => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize(),
+                'content'   => base64_encode(file_get_contents($file->getRealPath())),
+            ]);
+            $data['image'] = $attachment->id;
+        } else {
+            unset($data['image']);
+        }
+
+        Certification::create($data);
+
+        return back()->with('success', 'Sertifikat berhasil ditambahkan.');
+    }
+
+    public function certificationEdit(Certification $certification)
+    {
+        return view('admin.certification-edit', ['certification' => $certification]);
+    }
+
+    public function certificationUpdate(Request $request, Certification $certification)
+    {
+        $data = $request->validate([
+            'name'        => ['required', 'string', 'max:150'],
+            'issuer'      => ['nullable', 'string', 'max:100'],
+            'date'        => ['nullable', 'string', 'max:20'],
+            'description' => ['nullable', 'string'],
+            'url'         => ['nullable', 'url'],
+            'image'       => ['nullable', 'file', 'image', 'max:5120'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($certification->image) {
+                FileAttachment::where('id', $certification->image)->delete();
+            }
+            $file = $request->file('image');
+            $attachment = FileAttachment::create([
+                'name'      => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize(),
+                'content'   => base64_encode(file_get_contents($file->getRealPath())),
+            ]);
+            $data['image'] = $attachment->id;
+        } else {
+            unset($data['image']);
+        }
+
+        $certification->update($data);
+
+        return redirect()->route('admin.certifications')->with('success', 'Sertifikat berhasil diperbarui.');
+    }
+
+    public function certificationDestroy(Certification $certification)
+    {
+        if ($certification->image) {
+            FileAttachment::where('id', $certification->image)->delete();
+        }
+        $certification->delete();
+        return back()->with('success', 'Sertifikat berhasil dihapus.');
+    }
+
+    // ── Experiences ─────────────────────────────
+    public function experienceIndex()
+    {
+        return view('admin.experiences', ['experiences' => Experience::latest()->get()]);
+    }
+
+    public function experienceStore(Request $request)
+    {
+        $data = $request->validate([
+            'company'     => ['required', 'string', 'max:150'],
+            'position'    => ['nullable', 'string', 'max:150'],
+            'start_date'  => ['nullable', 'string', 'max:20'],
+            'end_date'    => ['nullable', 'string', 'max:20'],
+            'description' => ['nullable', 'string'],
+            'logo'        => ['nullable', 'file', 'image', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $attachment = FileAttachment::create([
+                'name'      => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize(),
+                'content'   => base64_encode(file_get_contents($file->getRealPath())),
+            ]);
+            $data['logo'] = $attachment->id;
+        } else {
+            unset($data['logo']);
+        }
+
+        Experience::create($data);
+
+        return back()->with('success', 'Pengalaman kerja berhasil ditambahkan.');
+    }
+
+    public function experienceEdit(Experience $experience)
+    {
+        return view('admin.experience-edit', ['experience' => $experience]);
+    }
+
+    public function experienceUpdate(Request $request, Experience $experience)
+    {
+        $data = $request->validate([
+            'company'     => ['required', 'string', 'max:150'],
+            'position'    => ['nullable', 'string', 'max:150'],
+            'start_date'  => ['nullable', 'string', 'max:20'],
+            'end_date'    => ['nullable', 'string', 'max:20'],
+            'description' => ['nullable', 'string'],
+            'logo'        => ['nullable', 'file', 'image', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('logo')) {
+            if ($experience->logo) {
+                FileAttachment::where('id', $experience->logo)->delete();
+            }
+            $file = $request->file('logo');
+            $attachment = FileAttachment::create([
+                'name'      => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize(),
+                'content'   => base64_encode(file_get_contents($file->getRealPath())),
+            ]);
+            $data['logo'] = $attachment->id;
+        } else {
+            unset($data['logo']);
+        }
+
+        $experience->update($data);
+
+        return redirect()->route('admin.experiences')->with('success', 'Pengalaman kerja berhasil diperbarui.');
+    }
+
+    public function experienceDestroy(Experience $experience)
+    {
+        if ($experience->logo) {
+            FileAttachment::where('id', $experience->logo)->delete();
+        }
+        $experience->delete();
+        return back()->with('success', 'Pengalaman kerja berhasil dihapus.');
     }
 
     // ── Account ──────────────────────────────────

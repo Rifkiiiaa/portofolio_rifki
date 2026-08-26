@@ -8,6 +8,8 @@ use App\Models\Skill;
 use App\Models\Project;
 use App\Models\Testimonial;
 use App\Models\Service;
+use App\Models\Education;
+use App\Models\Certification;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -42,6 +44,14 @@ class DatabaseSeeder extends Seeder
 
         foreach ($cfg['services'] as $s) {
             Service::create($s);
+        }
+
+        foreach ($cfg['educations'] as $e) {
+            Education::create($e);
+        }
+
+        foreach ($cfg['certifications'] as $c) {
+            Certification::create($c);
         }
     }
 }

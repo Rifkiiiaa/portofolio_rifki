@@ -38,7 +38,7 @@
     </div>
 
     {{-- Stats --}}
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="{{ route('admin.skills') }}"
            class="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:shadow-brand/5 hover:border-brand/20 transition-all">
             <div class="w-9 h-9 rounded-xl bg-brand/10 flex items-center justify-center mb-3 group-hover:bg-brand/20 transition-colors">
@@ -64,6 +64,33 @@
             </div>
             <p class="text-2xl font-bold text-navy">{{ $testimonialCount }}</p>
             <p class="text-sm text-slate-500 mt-0.5">Testimoni</p>
+        </a>
+
+        <a href="{{ route('admin.educations') }}"
+           class="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-500/20 transition-all">
+            <div class="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3 group-hover:bg-blue-500/20 transition-colors">
+                <svg class="w-4.5 h-4.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+            </div>
+            <p class="text-2xl font-bold text-navy">{{ $educationCount }}</p>
+            <p class="text-sm text-slate-500 mt-0.5">Pendidikan</p>
+        </a>
+
+        <a href="{{ route('admin.certifications') }}"
+           class="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:shadow-teal-500/5 hover:border-teal-500/20 transition-all">
+            <div class="w-9 h-9 rounded-xl bg-teal-500/10 flex items-center justify-center mb-3 group-hover:bg-teal-500/20 transition-colors">
+                <svg class="w-4.5 h-4.5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <p class="text-2xl font-bold text-navy">{{ $certificationCount }}</p>
+            <p class="text-sm text-slate-500 mt-0.5">Sertifikat</p>
+        </a>
+
+        <a href="{{ route('admin.experiences') }}"
+           class="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:shadow-cyan-500/5 hover:border-cyan-500/20 transition-all">
+            <div class="w-9 h-9 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-3 group-hover:bg-cyan-500/20 transition-colors">
+                <svg class="w-4.5 h-4.5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <p class="text-2xl font-bold text-navy">{{ $experienceCount }}</p>
+            <p class="text-sm text-slate-500 mt-0.5">Pengalaman</p>
         </a>
 
         <a href="{{ route('admin.services') }}"

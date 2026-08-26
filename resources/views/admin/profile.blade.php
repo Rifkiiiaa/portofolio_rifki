@@ -78,16 +78,37 @@
 
         <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2">Media Sosial</label>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <input type="url" name="socials[github]" placeholder="GitHub URL"
-                       value="{{ old('socials.github', $profile['socials']['github'] ?? '') }}"
-                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
-                <input type="url" name="socials[linkedin]" placeholder="LinkedIn URL"
-                       value="{{ old('socials.linkedin', $profile['socials']['linkedin'] ?? '') }}"
-                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
-                <input type="url" name="socials[whatsapp]" placeholder="WhatsApp URL"
-                       value="{{ old('socials.whatsapp', $profile['socials']['whatsapp'] ?? '') }}"
-                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-[11px] font-medium text-slate-400 mb-1">GitHub</label>
+                    <input type="url" name="socials[github]" placeholder="https://github.com/username"
+                           value="{{ old('socials.github', $profile['socials']['github'] ?? '') }}"
+                           class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-medium text-slate-400 mb-1">LinkedIn</label>
+                    <input type="url" name="socials[linkedin]" placeholder="https://linkedin.com/in/username"
+                           value="{{ old('socials.linkedin', $profile['socials']['linkedin'] ?? '') }}"
+                           class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-medium text-slate-400 mb-1">Instagram</label>
+                    <input type="url" name="socials[instagram]" placeholder="https://instagram.com/username"
+                           value="{{ old('socials.instagram', $profile['socials']['instagram'] ?? '') }}"
+                           class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-medium text-slate-400 mb-1">TikTok</label>
+                    <input type="url" name="socials[tiktok]" placeholder="https://tiktok.com/@username"
+                           value="{{ old('socials.tiktok', $profile['socials']['tiktok'] ?? '') }}"
+                           class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[11px] font-medium text-slate-400 mb-1">WhatsApp</label>
+                    <input type="url" name="socials[whatsapp]" placeholder="https://wa.me/6281200000000"
+                           value="{{ old('socials.whatsapp', $profile['socials']['whatsapp'] ?? '') }}"
+                           class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                </div>
             </div>
         </div>
     </div>

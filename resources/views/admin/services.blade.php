@@ -37,11 +37,15 @@
                             <p class="text-sm text-slate-500 mt-1.5 line-clamp-2">{{ $service->description }}</p>
                         @endif
                     </div>
-                    <form id="del-service-{{ $service->id }}" method="POST" action="{{ route('admin.services.destroy', $service) }}" class="flex-shrink-0">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" onclick="openModal('Hapus Jasa', 'Jasa {{ addslashes($service->title) }} akan dihapus permanen.', function(){ document.getElementById('del-service-{{ $service->id }}').submit(); })" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
-                    </form>
+                    <div class="flex items-center gap-2 flex-shrink-0">
+                        <a href="{{ route('admin.services.edit', $service) }}"
+                           class="text-xs font-semibold text-brand hover:text-brand/80 hover:bg-brand/5 px-3 py-1.5 rounded-lg transition-all">Edit</a>
+                        <form id="del-service-{{ $service->id }}" method="POST" action="{{ route('admin.services.destroy', $service) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="openModal('Hapus Jasa', 'Jasa {{ addslashes($service->title) }} akan dihapus permanen.', function(){ document.getElementById('del-service-{{ $service->id }}').submit(); })" class="text-xs font-semibold text-red-400 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all">Hapus</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         @empty
