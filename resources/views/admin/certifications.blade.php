@@ -25,6 +25,11 @@
                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
             </div>
             <div>
+                <label class="block text-xs font-medium text-slate-500 mb-1.5">Credential ID</label>
+                <input type="text" name="credential_id" placeholder="contoh: abc123-xyz456"
+                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+            </div>
+            <div>
                 <label class="block text-xs font-medium text-slate-500 mb-1.5">URL (opsional)</label>
                 <input type="url" name="url" placeholder="https://..."
                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
@@ -84,6 +89,9 @@
                         @endif
                         @if($cert->url)
                             <a href="{{ $cert->url }}" target="_blank" class="text-xs text-brand hover:underline mt-2 inline-block">Lihat Sertifikat &rarr;</a>
+                        @endif
+                        @if($cert->credential_id)
+                            <p class="text-xs text-slate-400 font-mono mt-1.5">ID: {{ $cert->credential_id }}</p>
                         @endif
                     </div>
                     <div class="flex items-center gap-2 flex-shrink-0">

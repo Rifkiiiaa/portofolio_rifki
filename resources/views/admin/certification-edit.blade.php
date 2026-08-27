@@ -25,6 +25,11 @@
                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
             </div>
             <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Credential ID</label>
+                <input type="text" name="credential_id" value="{{ old('credential_id', $certification->credential_id) }}" placeholder="abc123-xyz456"
+                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+            </div>
+            <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-1.5">URL</label>
                 <input type="url" name="url" value="{{ old('url', $certification->url) }}" placeholder="https://..."
                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">

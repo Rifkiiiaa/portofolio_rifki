@@ -317,12 +317,13 @@ class AdminController extends Controller
     public function certificationStore(Request $request)
     {
         $data = $request->validate([
-            'name'        => ['required', 'string', 'max:150'],
-            'issuer'      => ['nullable', 'string', 'max:100'],
-            'date'        => ['nullable', 'string', 'max:20'],
-            'description' => ['nullable', 'string'],
-            'url'         => ['nullable', 'url'],
-            'image'       => ['nullable', 'file', 'image', 'max:5120'],
+            'name'          => ['required', 'string', 'max:150'],
+            'issuer'        => ['nullable', 'string', 'max:100'],
+            'date'          => ['nullable', 'string', 'max:20'],
+            'credential_id' => ['nullable', 'string', 'max:100'],
+            'description'   => ['nullable', 'string'],
+            'url'           => ['nullable', 'url'],
+            'image'         => ['nullable', 'file', 'image', 'max:5120'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -351,12 +352,13 @@ class AdminController extends Controller
     public function certificationUpdate(Request $request, Certification $certification)
     {
         $data = $request->validate([
-            'name'        => ['required', 'string', 'max:150'],
-            'issuer'      => ['nullable', 'string', 'max:100'],
-            'date'        => ['nullable', 'string', 'max:20'],
-            'description' => ['nullable', 'string'],
-            'url'         => ['nullable', 'url'],
-            'image'       => ['nullable', 'file', 'image', 'max:5120'],
+            'name'          => ['required', 'string', 'max:150'],
+            'issuer'        => ['nullable', 'string', 'max:100'],
+            'date'          => ['nullable', 'string', 'max:20'],
+            'credential_id' => ['nullable', 'string', 'max:100'],
+            'description'   => ['nullable', 'string'],
+            'url'           => ['nullable', 'url'],
+            'image'         => ['nullable', 'file', 'image', 'max:5120'],
         ]);
 
         if ($request->hasFile('image')) {

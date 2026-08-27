@@ -79,18 +79,20 @@ return [
     // Sertifikat & Pencapaian
     'certifications' => [
         [
-            'name'        => 'Laravel (Intermediate)',
-            'issuer'      => 'HackerRank',
-            'date'        => '2024',
-            'description' => 'Sertifikasi kompetensi Laravel melalui HackerRank.',
-            'url'         => null,
+            'name'          => 'Laravel (Intermediate)',
+            'issuer'        => 'HackerRank',
+            'date'          => '2024',
+            'credential_id' => null,
+            'description'   => 'Sertifikasi kompetensi Laravel melalui HackerRank.',
+            'url'           => null,
         ],
         [
-            'name'        => 'JavaScript Algorithms and Data Structures',
-            'issuer'      => 'freeCodeCamp',
-            'date'        => '2023',
-            'description' => null,
-            'url'         => null,
+            'name'          => 'JavaScript Algorithms and Data Structures',
+            'issuer'        => 'freeCodeCamp',
+            'date'          => '2023',
+            'credential_id' => null,
+            'description'   => null,
+            'url'           => null,
         ],
     ],
 

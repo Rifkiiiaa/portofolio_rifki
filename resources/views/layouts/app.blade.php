@@ -126,45 +126,31 @@
             width: 100%;
         }
 
-        /* ── Certificate Slider ── */
-        .cert-wrapper {
+        /* ── Certificate Carousel ── */
+        .cert-carousel {
             position: relative;
+        }
+        .cert-viewport {
             overflow: hidden;
-        }
-        .cert-wrapper::before,
-        .cert-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            width: 120px;
-            z-index: 10;
-            pointer-events: none;
-        }
-        .cert-wrapper::before {
-            left: 0;
-            background: linear-gradient(to right, var(--cert-bg, #F8FAFC), transparent);
-        }
-        .cert-wrapper::after {
-            right: 0;
-            background: linear-gradient(to left, var(--cert-bg, #F8FAFC), transparent);
+            border-radius: 1.25rem;
         }
         .cert-track {
             display: flex;
-            gap: 2rem;
-            width: max-content;
-            animation: certScroll var(--cert-speed, 35s) linear infinite;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .cert-track:hover {
-            animation-play-state: paused;
+        .cert-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
         }
-        @keyframes certScroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .cert-slide-inner {
+            display: flex;
+            justify-content: center;
         }
 
         .cert-card {
-            width: 320px;
-            flex-shrink: 0;
+            width: 100%;
+            max-width: 520px;
             perspective: 800px;
         }
         .cert-card-inner {
@@ -177,7 +163,7 @@
             transform-style: preserve-3d;
         }
         .cert-card:hover .cert-card-inner {
-            transform: translateY(-8px) rotateX(2deg) rotateY(-1deg);
+            transform: translateY(-6px) rotateX(1deg);
             box-shadow:
                 0 25px 60px -12px rgba(99, 102, 241, 0.2),
                 0 8px 20px -8px rgba(0, 0, 0, 0.1);
@@ -208,7 +194,7 @@
             50%      { background-position: 100% 50%; }
         }
 
-        /* shine sweep on image */
+        /* shine sweep */
         .cert-shine {
             position: absolute;
             inset: 0;
@@ -230,26 +216,58 @@
             100% { transform: translateX(100%); }
         }
 
-        /* floating bob */
-        .cert-card:nth-child(odd)  { animation: certBob 4s ease-in-out infinite; }
-        .cert-card:nth-child(even) { animation: certBob 4s ease-in-out 1s infinite; }
-        @keyframes certBob {
-            0%, 100% { transform: translateY(0); }
-            50%      { transform: translateY(-6px); }
+        /* nav buttons */
+        .cert-nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #64748B;
+            flex-shrink: 0;
+        }
+        .cert-nav-btn:hover {
+            background: #6366F1;
+            color: white;
+            border-color: #6366F1;
+            box-shadow: 0 8px 25px rgba(99,102,241,0.35);
+            transform: scale(1.08);
+        }
+        .cert-nav-btn:active {
+            transform: scale(0.95);
+        }
+        .cert-nav-btn.disabled {
+            opacity: 0.3;
+            pointer-events: none;
         }
 
-        /* issuer badge */
-        .cert-issuer-badge {
+        /* number indicator */
+        .cert-indicator {
             display: inline-flex;
             align-items: center;
-            gap: 0.375rem;
-            padding: 0.25rem 0.75rem;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.06);
             border-radius: 9999px;
-            font-size: 0.7rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.025em;
-            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08));
+            color: #64748B;
+        }
+        .cert-indicator .current {
             color: #6366F1;
+            font-size: 1rem;
+        }
+        .cert-indicator .divider {
+            color: #CBD5E1;
         }
     </style>
 </head>

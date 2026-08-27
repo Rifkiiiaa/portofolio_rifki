@@ -245,7 +245,6 @@
 
     {{-- ===================== SERTIFIKAT ===================== --}}
     <section id="sertifikat" class="py-20 md:py-28 relative overflow-hidden">
-        {{-- decorative blobs --}}
         <div class="absolute top-10 left-1/4 w-72 h-72 bg-brand/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -255,130 +254,167 @@
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Sertifikat & Pencapaian</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Sertifikasi dan pencapaian yang telah saya raih</p>
             </div>
+
+            @php
+                $certs = collect($certifications)->filter(fn($c) => !empty($c['image']) || !empty($c['name']))->values();
+                $hasCerts = $certs->isNotEmpty();
+                $certCount = $certs->count();
+            @endphp
+
+            @if($hasCerts)
+                <div class="cert-carousel animate-on-scroll" id="cert-carousel">
+                    <button onclick="certPrev()" id="cert-prev" class="cert-nav-btn disabled absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:-ml-6 z-20" aria-label="Sebelumnya">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+
+                    <div class="cert-viewport mx-10 md:mx-16">
+                        <div class="cert-track" id="cert-track">
+                            @foreach($certs as $i => $cert)
+                                <div class="cert-slide">
+                                    <div class="cert-slide-inner">
+                                        <div class="cert-card">
+                                            <div class="cert-card-inner">
+                                                <div class="aspect-[16/9] overflow-hidden bg-slate-100 relative">
+                                                    @if(!empty($cert['image']))
+                                                        <img src="{{ route('file.show', $cert['image']) }}" alt="{{ $cert['name'] }}" class="w-full h-full object-cover">
+                                                    @else
+                                                        <div class="w-full h-full bg-gradient-to-br from-brand via-indigo-500 to-purple-600 flex items-center justify-center relative">
+                                                            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.2&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+                                                            <div class="text-center z-10">
+                                                                <svg class="w-14 h-14 text-white/90 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                                                <span class="text-white/70 text-xs font-medium tracking-widest uppercase">Certificate</span>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    <div class="cert-shine"></div>
+                                                    <div class="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                                    <div class="absolute top-3 left-3 z-10">
+                                                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-navy/70 backdrop-blur-sm text-white text-xs font-bold font-mono shadow-lg">
+                                                            {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
+                                                        </span>
+                                                    </div>
+                                                    @if(!empty($cert['issuer']))
+                                                        <div class="absolute top-3 right-3 z-10">
+                                                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-sm text-[11px] font-semibold text-navy shadow-sm">
+                                                                {{ $cert['issuer'] }}
+                                                            </span>
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                                <div class="p-5 pb-5">
+                                                    <h3 class="font-display text-[17px] font-bold text-navy leading-snug mb-3">{{ $cert['name'] }}</h3>
+
+                                                    <div class="space-y-2 mb-4">
+                                                        @if(!empty($cert['date']) || !empty($cert['credential_id']))
+                                                            <div class="flex items-center gap-2 text-[13px] text-slate-500">
+                                                                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                                                <span>{{ $cert['date'] ?? '—' }}</span>
+                                                            </div>
+                                                        @endif
+                                                        @if(!empty($cert['credential_id']))
+                                                            <div class="flex items-center gap-2 text-[13px] text-slate-500">
+                                                                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                                                                <span class="font-mono text-[12px]">{{ $cert['credential_id'] }}</span>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+
+                                                    @if(!empty($cert['url']))
+                                                        <a href="{{ $cert['url'] }}" target="_blank"
+                                                           class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand hover:text-brand/80 transition-colors group/link"
+                                                           onclick="event.stopPropagation();">
+                                                            Lihat Sertifikat
+                                                            <svg class="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                                @if(!empty($cert['url']))
+                                                    <a href="{{ $cert['url'] }}" target="_blank" class="absolute inset-0 z-10" aria-label="Lihat Sertifikat"></a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <button onclick="certNext()" id="cert-next" class="cert-nav-btn absolute right-0 top-1/2 -translate-y-1/2 -mr-2 md:-mr-6 z-20" aria-label="Selanjutnya">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+
+                    <div class="flex items-center justify-center gap-4 mt-8">
+                        <button onclick="certPrev()" class="cert-nav-btn !w-10 !h-10" id="cert-ind-prev" aria-label="Sebelumnya">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        </button>
+                        <div class="cert-indicator">
+                            <span class="current" id="cert-current">01</span>
+                            <span class="divider">/</span>
+                            <span id="cert-total">{{ str_pad($certCount, 2, '0', STR_PAD_LEFT) }}</span>
+                        </div>
+                        <button onclick="certNext()" class="cert-nav-btn !w-10 !h-10" id="cert-ind-next" aria-label="Selanjutnya">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+            @else
+                <div class="text-center text-slate-400 py-10">Sertifikat akan ditambahkan.</div>
+            @endif
         </div>
 
-        @php
-            $certs = collect($certifications)->filter(fn($c) => !empty($c['image']) || !empty($c['name']));
-            $hasCerts = $certs->isNotEmpty();
-        @endphp
-
         @if($hasCerts)
-            {{-- speed indicator --}}
-            <div class="flex items-center justify-center gap-3 mb-6 animate-on-scroll">
-                <button onclick="setCertSpeed(50)" id="cert-slow" class="cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-400 hover:border-brand hover:text-brand transition-all">
-                    <svg class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                    Pelan
-                </button>
-                <button onclick="setCertSpeed(25)" id="cert-normal" class="cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border-2 border-brand bg-brand/5 text-brand transition-all">
-                    <svg class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    Normal
-                </button>
-                <button onclick="setCertSpeed(12)" id="cert-fast" class="cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-400 hover:border-brand hover:text-brand transition-all">
-                    <svg class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    Cepat
-                </button>
-            </div>
-
-            <div class="cert-wrapper py-4" style="--cert-bg: {{ request()->routeIs('home') ? '#F8FAFC' : '#ffffff' }}">
-                <div class="cert-track" id="cert-track" style="--cert-speed: 25s">
-                    @foreach($certs as $cert)
-                        <div class="cert-card">
-                            <div class="cert-card-inner">
-                                <div class="aspect-[16/10] overflow-hidden bg-slate-100 relative">
-                                    @if(!empty($cert['image']))
-                                        <img src="{{ route('file.show', $cert['image']) }}" alt="{{ $cert['name'] }}" class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full bg-gradient-to-br from-teal-500 via-emerald-500 to-cyan-500 flex items-center justify-center relative">
-                                            <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-                                            <svg class="w-16 h-16 text-white/80 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                                        </div>
-                                    @endif
-                                    <div class="cert-shine"></div>
-                                    {{-- gradient overlay at bottom --}}
-                                    <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-black/20 to-transparent"></div>
-                                </div>
-                                <div class="p-5 pb-6">
-                                    @if(!empty($cert['issuer']))
-                                        <span class="cert-issuer-badge mb-2.5 inline-flex">
-                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                            {{ $cert['issuer'] }}
-                                        </span>
-                                    @endif
-                                    <h3 class="font-display text-[1.05rem] font-bold text-navy leading-snug">{{ $cert['name'] }}</h3>
-                                    @if(!empty($cert['date']))
-                                        <p class="text-xs text-slate-400 font-mono mt-2 tracking-wide">{{ $cert['date'] }}</p>
-                                    @endif
-                                </div>
-
-                                @if(!empty($cert['url']))
-                                    <a href="{{ $cert['url'] }}" target="_blank" class="absolute inset-0 z-10" aria-label="Lihat Sertifikat"></a>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-
-                    {{-- duplicate for seamless loop --}}
-                    @foreach($certs as $cert)
-                        <div class="cert-card">
-                            <div class="cert-card-inner">
-                                <div class="aspect-[16/10] overflow-hidden bg-slate-100 relative">
-                                    @if(!empty($cert['image']))
-                                        <img src="{{ route('file.show', $cert['image']) }}" alt="{{ $cert['name'] }}" class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full bg-gradient-to-br from-teal-500 via-emerald-500 to-cyan-500 flex items-center justify-center relative">
-                                            <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-                                            <svg class="w-16 h-16 text-white/80 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                                        </div>
-                                    @endif
-                                    <div class="cert-shine"></div>
-                                    <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-black/20 to-transparent"></div>
-                                </div>
-                                <div class="p-5 pb-6">
-                                    @if(!empty($cert['issuer']))
-                                        <span class="cert-issuer-badge mb-2.5 inline-flex">
-                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                            {{ $cert['issuer'] }}
-                                        </span>
-                                    @endif
-                                    <h3 class="font-display text-[1.05rem] font-bold text-navy leading-snug">{{ $cert['name'] }}</h3>
-                                    @if(!empty($cert['date']))
-                                        <p class="text-xs text-slate-400 font-mono mt-2 tracking-wide">{{ $cert['date'] }}</p>
-                                    @endif
-                                </div>
-
-                                @if(!empty($cert['url']))
-                                    <a href="{{ $cert['url'] }}" target="_blank" class="absolute inset-0 z-10" aria-label="Lihat Sertifikat"></a>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @else
-            <div class="text-center text-slate-400 py-10">Sertifikat akan ditambahkan.</div>
-        @endif
-
         <script>
-        function setCertSpeed(seconds) {
+        (function() {
+            var current = 0;
+            var total = {{ $certCount }};
             var track = document.getElementById('cert-track');
-            if (!track) return;
-            track.style.setProperty('--cert-speed', seconds + 's');
-            track.style.animation = 'none';
-            void track.offsetHeight;
-            track.style.animation = '';
+            var prevBtn = document.getElementById('cert-prev');
+            var nextBtn = document.getElementById('cert-next');
+            var currentEl = document.getElementById('cert-current');
+            var autoTimer = null;
 
-            document.querySelectorAll('.cert-speed-btn').forEach(function(btn) {
-                btn.className = 'cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-400 hover:border-[#6366F1] hover:text-[#6366F1] transition-all';
-            });
-            if (seconds <= 15) {
-                document.getElementById('cert-fast').className = 'cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border-2 border-[#6366F1] bg-[#6366F1]/5 text-[#6366F1] transition-all';
-            } else if (seconds <= 30) {
-                document.getElementById('cert-normal').className = 'cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border-2 border-[#6366F1] bg-[#6366F1]/5 text-[#6366F1] transition-all';
-            } else {
-                document.getElementById('cert-slow').className = 'cert-speed-btn text-xs font-semibold px-4 py-2 rounded-full border-2 border-[#6366F1] bg-[#6366F1]/5 text-[#6366F1] transition-all';
+            function goTo(index) {
+                if (index < 0) index = total - 1;
+                if (index >= total) index = 0;
+                current = index;
+                track.style.transform = 'translateX(-' + (current * 100) + '%)';
+                currentEl.textContent = String(current + 1).padStart(2, '0');
             }
-        }
+
+            window.certNext = function() { goTo(current + 1); resetAuto(); };
+            window.certPrev = function() { goTo(current - 1); resetAuto(); };
+
+            function startAuto() {
+                autoTimer = setInterval(function() { goTo(current + 1); }, 4000);
+            }
+            function resetAuto() {
+                clearInterval(autoTimer);
+                startAuto();
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') { window.certPrev(); }
+                if (e.key === 'ArrowRight') { window.certNext(); }
+            });
+
+            var touchStartX = 0;
+            var viewport = document.querySelector('.cert-viewport');
+            if (viewport) {
+                viewport.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+                viewport.addEventListener('touchend', function(e) {
+                    var diff = touchStartX - e.changedTouches[0].clientX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) window.certNext();
+                        else window.certPrev();
+                    }
+                }, { passive: true });
+            }
+
+            startAuto();
+        })();
         </script>
+        @endif
     </section>
 
     {{-- ===================== PENGALAMAN ===================== --}}
