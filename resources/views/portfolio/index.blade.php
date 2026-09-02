@@ -263,7 +263,7 @@
 
             @if($hasCerts)
                 <div class="cert-carousel animate-on-scroll" id="cert-carousel">
-                    <button onclick="certPrev()" id="cert-prev" class="cert-nav-btn disabled absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:-ml-6 z-20" aria-label="Sebelumnya">
+                    <button onclick="certPrev()" id="cert-prev" class="cert-nav-btn absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:-ml-6 z-20" aria-label="Sebelumnya">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                     </button>
 
@@ -374,12 +374,26 @@
             var currentEl = document.getElementById('cert-current');
             var autoTimer = null;
 
+            function updateNav() {
+                if (current <= 0) {
+                    prevBtn.classList.add('disabled');
+                } else {
+                    prevBtn.classList.remove('disabled');
+                }
+                if (current >= total - 1) {
+                    nextBtn.classList.add('disabled');
+                } else {
+                    nextBtn.classList.remove('disabled');
+                }
+            }
+
             function goTo(index) {
                 if (index < 0) index = total - 1;
                 if (index >= total) index = 0;
                 current = index;
                 track.style.transform = 'translateX(-' + (current * 100) + '%)';
                 currentEl.textContent = String(current + 1).padStart(2, '0');
+                updateNav();
             }
 
             window.certNext = function() { goTo(current + 1); resetAuto(); };
@@ -412,6 +426,7 @@
             }
 
             startAuto();
+            updateNav();
         })();
         </script>
         @endif
