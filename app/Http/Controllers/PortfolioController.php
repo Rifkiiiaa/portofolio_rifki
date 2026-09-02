@@ -18,8 +18,9 @@ class PortfolioController extends Controller
         $profile = Profile::first();
 
         $skills = Skill::all()->map(fn ($s) => [
-            'label' => $s->label,
-            'group' => $s->group,
+            'label'    => $s->label,
+            'group'    => $s->group,
+            'category' => $s->category ?? 'hard',
         ])->toArray();
 
         $projects = Project::all()->map(fn ($p) => [

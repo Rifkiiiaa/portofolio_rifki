@@ -15,12 +15,27 @@
                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
             </div>
             <div class="w-full sm:w-48">
-                <label class="block text-xs font-medium text-slate-500 mb-1.5">Grup</label>
+                <label class="block text-xs font-medium text-slate-500 mb-1.5">Kategori</label>
+                <select name="category" required
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                    <option value="hard">Hard Skills</option>
+                    <option value="soft">Soft Skills</option>
+                </select>
+            </div>
+            <div class="w-full sm:w-56">
+                <label class="block text-xs font-medium text-slate-500 mb-1.5">Grup / Sub-Kategori</label>
                 <select name="group" required
                         class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
-                    <option value="Backend">Backend</option>
-                    <option value="Frontend">Frontend</option>
-                    <option value="Tools">Tools</option>
+                    <optgroup label="Hard Skills">
+                        <option value="Backend">Backend</option>
+                        <option value="Frontend">Frontend</option>
+                        <option value="Tools">Tools</option>
+                    </optgroup>
+                    <optgroup label="Soft Skills">
+                        <option value="Komunikasi & Kolaborasi">Komunikasi & Kolaborasi</option>
+                        <option value="Manajemen Kerja">Manajemen Kerja</option>
+                        <option value="Kepemimpinan">Kepemimpinan</option>
+                    </optgroup>
                 </select>
             </div>
             <button type="submit"
@@ -37,6 +52,7 @@
             <thead class="bg-slate-50/80">
                 <tr>
                     <th class="text-left px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Nama</th>
+                    <th class="text-left px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Kategori</th>
                     <th class="text-left px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Grup</th>
                     <th class="text-right px-6 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wide">Aksi</th>
                 </tr>
@@ -45,6 +61,11 @@
                 @forelse($skills as $skill)
                     <tr class="hover:bg-slate-50/50 transition-colors">
                         <td class="px-6 py-3.5 font-medium text-slate-700">{{ $skill->label }}</td>
+                        <td class="px-6 py-3.5">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold {{ $skill->category === 'soft' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-brand/10 text-brand' }}">
+                                {{ $skill->category === 'soft' ? 'Soft' : 'Hard' }}
+                            </span>
+                        </td>
                         <td class="px-6 py-3.5">
                             <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold
                                 {{ $skill->group === 'Backend' ? 'bg-brand/10 text-brand' :
@@ -62,7 +83,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="px-6 py-12 text-center text-slate-400">Belum ada keahlian.</td>
+                        <td colspan="4" class="px-6 py-12 text-center text-slate-400">Belum ada keahlian.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -74,11 +95,16 @@
                 <div class="px-4 py-3.5 flex items-center justify-between">
                     <div>
                         <div class="font-medium text-sm text-slate-700">{{ $skill->label }}</div>
-                        <span class="inline-flex items-center px-2 py-0.5 mt-1 rounded-lg text-xs font-semibold
-                            {{ $skill->group === 'Backend' ? 'bg-brand/10 text-brand' :
-                               ($skill->group === 'Frontend' ? 'bg-purple-500/10 text-purple-600' : 'bg-amber-500/10 text-amber-600') }}">
-                            {{ $skill->group }}
-                        </span>
+                        <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-semibold {{ $skill->category === 'soft' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-brand/10 text-brand' }}">
+                                {{ $skill->category === 'soft' ? 'Soft' : 'Hard' }}
+                            </span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-semibold
+                                {{ $skill->group === 'Backend' ? 'bg-brand/10 text-brand' :
+                                   ($skill->group === 'Frontend' ? 'bg-purple-500/10 text-purple-600' : 'bg-amber-500/10 text-amber-600') }}">
+                                {{ $skill->group }}
+                            </span>
+                        </div>
                     </div>
                     <form id="del-skill-m-{{ $skill->id }}" method="POST" action="{{ route('admin.skills.destroy', $skill) }}">
                         @csrf

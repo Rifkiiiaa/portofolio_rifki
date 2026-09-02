@@ -27,16 +27,27 @@ return [
     ],
 
     'skills' => [
-        ['label' => 'Laravel', 'group' => 'Backend'],
-        ['label' => 'PHP', 'group' => 'Backend'],
-        ['label' => 'MySQL', 'group' => 'Backend'],
-        ['label' => 'REST API', 'group' => 'Backend'],
-        ['label' => 'Blade / Tailwind', 'group' => 'Frontend'],
-        ['label' => 'JavaScript', 'group' => 'Frontend'],
-        ['label' => 'Alpine.js', 'group' => 'Frontend'],
-        ['label' => 'Git & GitHub', 'group' => 'Tools'],
-        ['label' => 'Docker (dasar)', 'group' => 'Tools'],
-        ['label' => 'Linux Server', 'group' => 'Tools'],
+        // ── Keahlian Teknis (Hard Skills) ──
+        ['label' => 'Laravel', 'group' => 'Backend', 'category' => 'hard'],
+        ['label' => 'PHP', 'group' => 'Backend', 'category' => 'hard'],
+        ['label' => 'MySQL', 'group' => 'Backend', 'category' => 'hard'],
+        ['label' => 'REST API', 'group' => 'Backend', 'category' => 'hard'],
+        ['label' => 'Blade / Tailwind', 'group' => 'Frontend', 'category' => 'hard'],
+        ['label' => 'JavaScript', 'group' => 'Frontend', 'category' => 'hard'],
+        ['label' => 'Alpine.js', 'group' => 'Frontend', 'category' => 'hard'],
+        ['label' => 'Git & GitHub', 'group' => 'Tools', 'category' => 'hard'],
+        ['label' => 'Docker (dasar)', 'group' => 'Tools', 'category' => 'hard'],
+        ['label' => 'Linux Server', 'group' => 'Tools', 'category' => 'hard'],
+
+        // ── Keahlian Interpersonal (Soft Skills) ──
+        ['label' => 'Komunikasi', 'group' => 'Komunikasi & Kolaborasi', 'category' => 'soft'],
+        ['label' => 'Kerja Tim', 'group' => 'Komunikasi & Kolaborasi', 'category' => 'soft'],
+        ['label' => 'Negosiasi', 'group' => 'Komunikasi & Kolaborasi', 'category' => 'soft'],
+        ['label' => 'Manajemen Waktu', 'group' => 'Manajemen Kerja', 'category' => 'soft'],
+        ['label' => 'Problem Solving', 'group' => 'Manajemen Kerja', 'category' => 'soft'],
+        ['label' => 'Attention to Detail', 'group' => 'Manajemen Kerja', 'category' => 'soft'],
+        ['label' => 'Manajemen Proyek', 'group' => 'Kepemimpinan', 'category' => 'soft'],
+        ['label' => 'Koordinasi Tim', 'group' => 'Kepemimpinan', 'category' => 'soft'],
     ],
 
     'projects' => [

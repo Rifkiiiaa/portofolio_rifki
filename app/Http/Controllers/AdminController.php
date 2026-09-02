@@ -121,14 +121,15 @@ class AdminController extends Controller
     // ── Skills ───────────────────────────────────
     public function skillIndex()
     {
-        return view('admin.skills', ['skills' => Skill::orderBy('group')->get()]);
+        return view('admin.skills', ['skills' => Skill::orderBy('category')->orderBy('group')->get()]);
     }
 
     public function skillStore(Request $request)
     {
         $data = $request->validate([
-            'label' => ['required', 'string', 'max:100'],
-            'group' => ['required', 'string', 'max:50'],
+            'label'    => ['required', 'string', 'max:100'],
+            'group'    => ['required', 'string', 'max:50'],
+            'category' => ['required', 'in:hard,soft'],
         ]);
 
         Skill::create($data);

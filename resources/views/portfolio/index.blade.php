@@ -487,36 +487,97 @@
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
                 <span class="section-number">05</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Keahlian & Tools</h2>
-                <p class="text-slate-500 max-w-lg mx-auto">Teknologi dan tools yang saya kuasai untuk membangun web modern</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Keahlian</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Kemampuan teknis dan interpersonal yang saya miliki</p>
             </div>
 
-            @php $grouped = collect($skills)->groupBy('group'); @endphp
+            @php
+                $hardSkills  = collect($skills)->where('category', 'hard')->groupBy('group');
+                $softSkills  = collect($skills)->where('category', 'soft')->groupBy('group');
+            @endphp
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll">
-                @foreach($grouped as $group => $items)
-                    <div class="p-6 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 card-hover">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-8 h-8 rounded-lg
-                                {{ $group === 'Backend' ? 'bg-brand/10 text-brand' : ($group === 'Frontend' ? 'bg-purple-500/10 text-purple-500' : 'bg-amber-500/10 text-amber-500') }}
-                                flex items-center justify-center">
-                                @if($group === 'Backend')
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
-                                @elseif($group === 'Frontend')
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                @else
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                @endif
-                            </div>
-                            <h3 class="font-display font-bold text-navy">{{ $group }}</h3>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($items as $item)
-                                <span class="skill-pill px-3 py-1.5 bg-slate-100 text-slate-700 text-xs font-medium rounded-lg cursor-default">{{ $item['label'] }}</span>
-                            @endforeach
-                        </div>
+            {{-- ── Keahlian Teknis (Hard Skills) ── --}}
+            <div class="mb-14 animate-on-scroll">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
-                @endforeach
+                    <div>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-navy">Keahlian Teknis</h3>
+                        <p class="text-sm text-slate-500">Hard Skills — alat, kemampuan teknis, serta metode & bahasa</p>
+                    </div>
+                </div>
+
+                @if($hardSkills->isNotEmpty())
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach($hardSkills as $group => $items)
+                            <div class="p-6 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 card-hover">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-8 h-8 rounded-lg
+                                        {{ $group === 'Backend' ? 'bg-brand/10 text-brand' : ($group === 'Frontend' ? 'bg-purple-500/10 text-purple-500' : 'bg-amber-500/10 text-amber-500') }}
+                                        flex items-center justify-center">
+                                        @if($group === 'Backend')
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
+                                        @elseif($group === 'Frontend')
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                        @else
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        @endif
+                                    </div>
+                                    <h4 class="font-display font-bold text-navy">{{ $group }}</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($items as $item)
+                                        <span class="skill-pill px-3 py-1.5 bg-slate-100 text-slate-700 text-xs font-medium rounded-lg cursor-default">{{ $item['label'] }}</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-center text-slate-400 py-10">Keahlian teknis belum diisi.</p>
+                @endif
+            </div>
+
+            {{-- ── Keahlian Interpersonal (Soft Skills) ── --}}
+            <div class="animate-on-scroll">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-navy">Keahlian Interpersonal</h3>
+                        <p class="text-sm text-slate-500">Soft Skills — komunikasi, manajemen kerja & kepemimpinan</p>
+                    </div>
+                </div>
+
+                @if($softSkills->isNotEmpty())
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach($softSkills as $group => $items)
+                            <div class="p-6 bg-gradient-to-br from-emerald-50/60 to-white rounded-2xl border border-emerald-100/70 card-hover">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                                        @if($group === 'Komunikasi & Kolaborasi')
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                        @elseif($group === 'Manajemen Kerja')
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        @else
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                        @endif
+                                    </div>
+                                    <h4 class="font-display font-bold text-navy">{{ $group }}</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($items as $item)
+                                        <span class="skill-pill px-3 py-1.5 bg-emerald-500/5 text-emerald-700 text-xs font-medium rounded-lg cursor-default">{{ $item['label'] }}</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-center text-slate-400 py-10">Keahlian interpersonal belum diisi.</p>
+                @endif
             </div>
         </div>
     </section>
