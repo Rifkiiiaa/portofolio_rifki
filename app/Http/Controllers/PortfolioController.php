@@ -52,13 +52,18 @@ class PortfolioController extends Controller
         ])->toArray();
 
         $certifications = Certification::all()->map(fn ($c) => [
+            'id'            => $c->id,
+            'title'         => $c->name,
             'name'          => $c->name,
             'issuer'        => $c->issuer,
+            'issue_date'    => $c->date,
             'date'          => $c->date,
             'credential_id' => $c->credential_id,
             'description'   => $c->description,
             'url'           => $c->url,
             'image'         => $c->image,
+            'back_image'    => $c->back_image,
+            'back_url'      => $c->back_image ? route('file.show', $c->back_image) : null,
         ])->toArray();
 
         $experiences = Experience::all()->map(fn ($e) => [

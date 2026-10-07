@@ -325,6 +325,7 @@ class AdminController extends Controller
             'description'   => ['nullable', 'string'],
             'url'           => ['nullable', 'url'],
             'image'         => ['nullable', 'file', 'image', 'max:5120'],
+            'back_image'    => ['nullable', 'file', 'image', 'max:5120'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -338,6 +339,19 @@ class AdminController extends Controller
             $data['image'] = $attachment->id;
         } else {
             unset($data['image']);
+        }
+
+        if ($request->hasFile('back_image')) {
+            $file = $request->file('back_image');
+            $attachment = FileAttachment::create([
+                'name'      => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize(),
+                'content'   => base64_encode(file_get_contents($file->getRealPath())),
+            ]);
+            $data['back_image'] = $attachment->id;
+        } else {
+            unset($data['back_image']);
         }
 
         Certification::create($data);
@@ -360,6 +374,7 @@ class AdminController extends Controller
             'description'   => ['nullable', 'string'],
             'url'           => ['nullable', 'url'],
             'image'         => ['nullable', 'file', 'image', 'max:5120'],
+            'back_image'    => ['nullable', 'file', 'image', 'max:5120'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -378,6 +393,22 @@ class AdminController extends Controller
             unset($data['image']);
         }
 
+        if ($request->hasFile('back_image')) {
+            if ($certification->back_image) {
+                FileAttachment::where('id', $certification->back_image)->delete();
+            }
+            $file = $request->file('back_image');
+            $attachment = FileAttachment::create([
+                'name'      => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize(),
+                'content'   => base64_encode(file_get_contents($file->getRealPath())),
+            ]);
+            $data['back_image'] = $attachment->id;
+        } else {
+            unset($data['back_image']);
+        }
+
         $certification->update($data);
 
         return redirect()->route('admin.certifications')->with('success', 'Sertifikat berhasil diperbarui.');
@@ -387,6 +418,9 @@ class AdminController extends Controller
     {
         if ($certification->image) {
             FileAttachment::where('id', $certification->image)->delete();
+        }
+        if ($certification->back_image) {
+            FileAttachment::where('id', $certification->back_image)->delete();
         }
         $certification->delete();
         return back()->with('success', 'Sertifikat berhasil dihapus.');

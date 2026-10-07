@@ -8,6 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -38,7 +39,7 @@
                         slideUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
                         slideLeft: { '0%': { opacity: '0', transform: 'translateX(30px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
                         float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
-                        glow: { '0%': { boxShadow: '0 0 20px rgba(99,102,241,0.3)' }, '100%': { boxShadow: '0 0 40px rgba(99,102,241,0.5)' } },
+                        glow: { '0%': { boxShadow: '0 0 20px rgba(99,102,241,0.3)' }, '100%': { boxShadow: '0 0 40px rgba(99,102,241,0.5)' } }
                     }
                 }
             }
@@ -126,150 +127,7 @@
             width: 100%;
         }
 
-        /* ── Certificate Carousel ── */
-        .cert-carousel {
-            position: relative;
-        }
-        .cert-viewport {
-            overflow: hidden;
-            border-radius: 1.25rem;
-        }
-        .cert-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .cert-slide {
-            min-width: 100%;
-            padding: 0 1rem;
-            box-sizing: border-box;
-        }
-        .cert-slide-inner {
-            display: flex;
-            justify-content: center;
-        }
-
-        .cert-card {
-            width: 100%;
-            max-width: 520px;
-            perspective: 800px;
-        }
-        .cert-card-inner {
-            position: relative;
-            border-radius: 1.25rem;
-            overflow: hidden;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.06);
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
-            transform-style: preserve-3d;
-        }
-        .cert-card:hover .cert-card-inner {
-            transform: translateY(-6px) rotateX(1deg);
-            box-shadow:
-                0 25px 60px -12px rgba(99, 102, 241, 0.2),
-                0 8px 20px -8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* glow border on hover */
-        .cert-card-inner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 2px;
-            background: linear-gradient(135deg, #6366F1, #A855F7, #EC4899, #6366F1);
-            background-size: 300% 300%;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            animation: borderGlow 3s ease infinite;
-        }
-        .cert-card:hover .cert-card-inner::before {
-            opacity: 1;
-        }
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50%      { background-position: 100% 50%; }
-        }
-
-        /* shine sweep */
-        .cert-shine {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                105deg,
-                transparent 40%,
-                rgba(255,255,255,0.25) 45%,
-                rgba(255,255,255,0.05) 50%,
-                transparent 55%
-            );
-            transform: translateX(-100%);
-            z-index: 2;
-        }
-        .cert-card:hover .cert-shine {
-            animation: shineSwipe 0.8s ease forwards;
-        }
-        @keyframes shineSwipe {
-            0%   { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* nav buttons */
-        .cert-nav-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #64748B;
-            flex-shrink: 0;
-        }
-        .cert-nav-btn:hover {
-            background: #6366F1;
-            color: white;
-            border-color: #6366F1;
-            box-shadow: 0 8px 25px rgba(99,102,241,0.35);
-            transform: scale(1.08);
-        }
-        .cert-nav-btn:active {
-            transform: scale(0.95);
-        }
-        .cert-nav-btn.disabled {
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        /* number indicator */
-        .cert-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.25rem;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 9999px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #64748B;
-        }
-        .cert-indicator .current {
-            color: #6366F1;
-            font-size: 1rem;
-        }
-        .cert-indicator .divider {
-            color: #CBD5E1;
-        }
-    </style>
+        </style>
 </head>
 <body class="bg-paper text-slate-800 antialiased">
     @yield('content')

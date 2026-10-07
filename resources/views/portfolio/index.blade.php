@@ -17,7 +17,7 @@
             <nav class="hidden md:flex items-center gap-6">
                 <a href="#tentang" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Tentang</a>
                 <a href="#pendidikan" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Pendidikan</a>
-                <a href="#sertifikat" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Sertifikat</a>
+                <a href="#achievements" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Sertifikat</a>
                 <a href="#pengalaman" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Pengalaman</a>
                 <a href="#keahlian" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Keahlian</a>
                 <a href="#portofolio" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Proyek</a>
@@ -39,7 +39,7 @@
             <div class="flex flex-col gap-2">
                 <a href="#tentang" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Tentang</a>
                 <a href="#pendidikan" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Pendidikan</a>
-                <a href="#sertifikat" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Sertifikat</a>
+                <a href="#achievements" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Sertifikat</a>
                 <a href="#pengalaman" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Pengalaman</a>
                 <a href="#keahlian" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Keahlian</a>
                 <a href="#portofolio" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Proyek</a>
@@ -244,191 +244,325 @@
     </section>
 
     {{-- ===================== SERTIFIKAT ===================== --}}
-    <section id="sertifikat" class="py-20 md:py-28 relative overflow-hidden">
-        <div class="absolute top-10 left-1/4 w-72 h-72 bg-brand/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="achievements" class="relative bg-slate-950 overflow-hidden px-6 md:px-16 pt-16 pb-16">
+        <div class="absolute top-10 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-6xl mx-auto px-4 md:px-6 relative">
-            <div class="text-center mb-14 animate-on-scroll">
-                <span class="section-number">03</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Sertifikat & Pencapaian</h2>
-                <p class="text-slate-500 max-w-lg mx-auto">Sertifikasi dan pencapaian yang telah saya raih</p>
-            </div>
+        @php
+            $certs = collect($certifications)->map(function($c) {
+                $front = null;
+                if (!empty($c['image'])) {
+                    $front = route('file.show', $c['image']);
+                } elseif (!empty($c['url']) && preg_match('/\.(jpg|jpeg|png|gif|webp|svg)$/i', $c['url'])) {
+                    $front = $c['url'];
+                }
+                return [
+                    'id' => $c['id'] ?? null,
+                    'title' => $c['title'] ?? $c['name'] ?? '',
+                    'url' => $front ?? $c['url'] ?? '',
+                    'link' => $c['url'] ?? '',
+                    'back_url' => $c['back_url'] ?? null,
+                    'issuer' => $c['issuer'] ?? '',
+                    'issue_date' => $c['issue_date'] ?? $c['date'] ?? '',
+                    'credential_id' => $c['credential_id'] ?? '',
+                    'description' => $c['description'] ?? '',
+                ];
+            })->filter(fn($c) => !empty($c['url']) || !empty($c['back_url']) || !empty($c['title']))->values();
+            $hasCerts = $certs->isNotEmpty();
+            $itemsJson = $certs->toJson();
+        @endphp
 
-            @php
-                $certs = collect($certifications)->filter(fn($c) => !empty($c['image']) || !empty($c['name']))->values();
-                $hasCerts = $certs->isNotEmpty();
-                $certCount = $certs->count();
-            @endphp
+        <div class="border-t border-slate-800/80 w-full max-w-7xl mx-auto mb-16"></div>
 
-            @if($hasCerts)
-                <div class="cert-carousel animate-on-scroll" id="cert-carousel">
-                    <button onclick="certPrev()" id="cert-prev" class="cert-nav-btn absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:-ml-6 z-20" aria-label="Sebelumnya">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-
-                    <div class="cert-viewport mx-10 md:mx-16">
-                        <div class="cert-track" id="cert-track">
-                            @foreach($certs as $i => $cert)
-                                <div class="cert-slide">
-                                    <div class="cert-slide-inner">
-                                        <div class="cert-card">
-                                            <div class="cert-card-inner">
-                                                <div class="aspect-[16/9] overflow-hidden bg-slate-100 relative">
-                                                    @if(!empty($cert['image']))
-                                                        <img src="{{ route('file.show', $cert['image']) }}" alt="{{ $cert['name'] }}" class="w-full h-full object-cover">
-                                                    @else
-                                                        <div class="w-full h-full bg-gradient-to-br from-brand via-indigo-500 to-purple-600 flex items-center justify-center relative">
-                                                            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.2&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-                                                            <div class="text-center z-10">
-                                                                <svg class="w-14 h-14 text-white/90 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                                                                <span class="text-white/70 text-xs font-medium tracking-widest uppercase">Certificate</span>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                    <div class="cert-shine"></div>
-                                                    <div class="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-black/30 to-transparent"></div>
-                                                    <div class="absolute top-3 left-3 z-10">
-                                                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-navy/70 backdrop-blur-sm text-white text-xs font-bold font-mono shadow-lg">
-                                                            {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
-                                                        </span>
+        @if($hasCerts)
+        <div 
+            x-data="certificationCarousel({{ $itemsJson }})"
+            x-init="init()"
+            class="w-full mx-auto max-w-7xl"
+        >
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                <div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:hidden">
+                    <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
+                        Achievements
+                    </span>
+                </div>
+                <div class="lg:col-span-7 w-full lg:order-2">
+                    <div
+                        class="relative w-full overflow-hidden rounded-2xl group"
+                        x-ref="container"
+                        @mousedown="dragStart($event)"
+                        @mousemove.window="dragMove($event)"
+                        @mouseup.window="dragEnd($event)"
+                        @touchstart="dragStart($event)"
+                        @touchmove.window="dragMove($event)"
+                        @touchend.window="dragEnd($event)"
+                    >
+                        <div
+                            class="flex transition-transform ease-out"
+                            :class="isDragging ? 'duration-0' : 'duration-300'"
+                            :style="`transform: translateX(${currentTranslate}px); cursor: ${isDragging ? 'grabbing' : 'grab'};`"
+                        >
+                            <template x-for="(item, i) in items" :key="item.id || i">
+                                <div class="shrink-0 w-full">
+                                    <div 
+                                        class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[250px] sm:min-h-[280px] rounded-2xl cursor-pointer select-none [perspective:1000px] overflow-hidden bg-slate-950"
+                                        @click="toggleFlip(i)"
+                                    >
+                                        <div 
+                                            class="relative w-full h-full duration-700 transition-all [transform-style:preserve-3d]"
+                                            :class="isFlipped[i] ? '[transform:rotateY(180deg)]' : ''"
+                                        >
+                                            <div class="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-slate-950 flex items-center justify-center overflow-hidden rounded-2xl">
+                                                <img
+                                                    x-show="item.url"
+                                                    :src="item.url"
+                                                    :alt="item.title"
+                                                    class="w-full h-full object-cover pointer-events-none rounded-2xl"
+                                                    draggable="false"
+                                                >
+                                                <div
+                                                    x-show="!item.url"
+                                                    class="w-full h-full bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 flex items-center justify-center"
+                                                >
+                                                    <div class="text-center">
+                                                        <svg class="w-14 h-14 text-white/90 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 01-1.946.806 3.42 3.42 0 00-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 01-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 01.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                                        <span class="text-white/70 text-xs font-medium tracking-widest uppercase">Certificate</span>
                                                     </div>
-                                                    @if(!empty($cert['issuer']))
-                                                        <div class="absolute top-3 right-3 z-10">
-                                                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-sm text-[11px] font-semibold text-navy shadow-sm">
-                                                                {{ $cert['issuer'] }}
-                                                            </span>
+                                                </div>
+                                                <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
+                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                                    <span>Klik untuk Balik</span>
+                                                </div>
+                                            </div>
+                                            <div class="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 flex items-center justify-center overflow-hidden rounded-2xl">
+                                                <template x-if="item.back_url">
+                                                    <img
+                                                        :src="item.back_url"
+                                                        :alt="item.title + ' Back'"
+                                                        class="w-full h-full object-cover pointer-events-none rounded-2xl"
+                                                        draggable="false"
+                                                    >
+                                                </template>
+                                                <template x-if="!item.back_url">
+                                                    <div class="max-w-md p-6 space-y-3 text-center">
+                                                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto">
+                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                                         </div>
-                                                    @endif
-                                                </div>
-
-                                                <div class="p-5 pb-5">
-                                                    <h3 class="font-display text-[17px] font-bold text-navy leading-snug mb-3">{{ $cert['name'] }}</h3>
-
-                                                    <div class="space-y-2 mb-4">
-                                                        @if(!empty($cert['date']) || !empty($cert['credential_id']))
-                                                            <div class="flex items-center gap-2 text-[13px] text-slate-500">
-                                                                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                                                <span>{{ $cert['date'] ?? '—' }}</span>
-                                                            </div>
-                                                        @endif
-                                                        @if(!empty($cert['credential_id']))
-                                                            <div class="flex items-center gap-2 text-[13px] text-slate-500">
-                                                                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
-                                                                <span class="font-mono text-[12px]">{{ $cert['credential_id'] }}</span>
-                                                            </div>
-                                                        @endif
+                                                        <h4 class="text-white font-bold text-base sm:text-lg line-clamp-2" x-text="item.title"></h4>
+                                                        <p class="text-xs text-blue-400 font-medium" x-text="'Issued by: ' + (item.issuer || '-') + (item.issue_date ? ' (' + item.issue_date + ')' : '')"></p>
+                                                        <p class="text-gray-300 text-xs leading-relaxed line-clamp-3" x-text="item.description || 'Verified authentic credential certificate record.'"></p>
                                                     </div>
-
-                                                    @if(!empty($cert['url']))
-                                                        <a href="{{ $cert['url'] }}" target="_blank"
-                                                           class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand hover:text-brand/80 transition-colors group/link"
-                                                           onclick="event.stopPropagation();">
-                                                            Lihat Sertifikat
-                                                            <svg class="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                                                        </a>
-                                                    @endif
+                                                </template>
+                                                <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
+                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                                    <span>Klik untuk Depan</span>
                                                 </div>
-                                                @if(!empty($cert['url']))
-                                                    <a href="{{ $cert['url'] }}" target="_blank" class="absolute inset-0 z-10" aria-label="Lihat Sertifikat"></a>
-                                                @endif
+                                                <a
+                                                    x-show="item.link"
+                                                    :href="item.link"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    @click.stop
+                                                    class="absolute bottom-3 left-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 hover:bg-blue-600 hover:text-white text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md shadow-md z-10 transition-colors"
+                                                >
+                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                                    <span>Buka Kredensial</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            </template>
                         </div>
-                    </div>
-
-                    <button onclick="certNext()" id="cert-next" class="cert-nav-btn absolute right-0 top-1/2 -translate-y-1/2 -mr-2 md:-mr-6 z-20" aria-label="Selanjutnya">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-
-                    <div class="flex items-center justify-center gap-4 mt-8">
-                        <button onclick="certPrev()" class="cert-nav-btn !w-10 !h-10" id="cert-ind-prev" aria-label="Sebelumnya">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        <button
+                            type="button"
+                            :disabled="index === 0"
+                            @click="goTo(index - 1)"
+                            :class="index === 0
+                                ? 'opacity-0 pointer-events-none'
+                                : 'bg-slate-900/80 hover:bg-blue-600 text-white opacity-90 hover:opacity-100'"
+                            class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+                            </svg>
                         </button>
-                        <div class="cert-indicator">
-                            <span class="current" id="cert-current">01</span>
-                            <span class="divider">/</span>
-                            <span id="cert-total">{{ str_pad($certCount, 2, '0', STR_PAD_LEFT) }}</span>
-                        </div>
-                        <button onclick="certNext()" class="cert-nav-btn !w-10 !h-10" id="cert-ind-next" aria-label="Selanjutnya">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        <button
+                            type="button"
+                            :disabled="index === items.length - 1"
+                            @click="goTo(index + 1)"
+                            :class="index === items.length - 1
+                                ? 'opacity-0 pointer-events-none'
+                                : 'bg-slate-900/80 hover:bg-blue-600 text-white opacity-90 hover:opacity-100'"
+                            class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                            </svg>
                         </button>
                     </div>
                 </div>
-            @else
-                <div class="text-center text-slate-400 py-10">Sertifikat akan ditambahkan.</div>
-            @endif
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:order-1">
+                    <div class="hidden lg:block">
+                        <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
+                            Achievements
+                        </span>
+                    </div>
+                    <div class="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-left">
+                        <div class="flex items-center justify-between w-full text-xs text-gray-400">
+                            <span class="font-medium text-[10px] uppercase tracking-wider text-slate-400">Select Certificate</span>
+                            <span class="font-mono text-xs font-bold text-blue-400" x-text="(items.length > 0 ? index + 1 : 0) + ' / ' + items.length"></span>
+                        </div>
+                        <div
+                            x-ref="thumbnails"
+                            class="w-full overflow-x-auto scrollbar-hide py-1 flex justify-center lg:justify-start"
+                            style="scrollbar-width: none; -ms-overflow-style: none;"
+                        >
+                            <div class="flex gap-2.5 items-center mx-auto lg:mx-0" style="width: fit-content;">
+                                <template x-for="(item, i) in items" :key="item.id || i">
+                                    <button
+                                        type="button"
+                                        @click="goTo(i)"
+                                        :class="i === index 
+                                            ? 'ring-2 ring-blue-500 opacity-100 scale-105' 
+                                            : 'opacity-40 hover:opacity-80 border-slate-800'"
+                                        class="relative shrink-0 h-10 w-16 rounded-xl overflow-hidden bg-slate-950 border transition-all duration-200"
+                                    >
+                                        <img
+                                            x-show="item.url"
+                                            :src="item.url"
+                                            :alt="item.title"
+                                            class="w-full h-full object-cover pointer-events-none select-none"
+                                        >
+                                        <div
+                                            x-show="!item.url"
+                                            class="w-full h-full bg-gradient-to-br from-blue-600 to-purple-700"
+                                        ></div>
+                                    </button>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2.5 text-center lg:text-left">
+                        <h2 class="text-xl sm:text-2xl lg:text-4xl font-bold text-white leading-snug tracking-tight" x-text="items[index]?.title || 'Certifications & Credentials'">
+                        </h2>
+                    </div>
+                    <div class="space-y-2.5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
+                                <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                                <div class="min-w-0 text-left">
+                                    <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issuer</p>
+                                    <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || '-'"></p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
+                                <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <div class="min-w-0 text-left">
+                                    <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issued Date</p>
+                                    <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '-'"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-inner">
+                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div class="min-w-0 flex-1 text-left">
+                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Credential ID / No.</p>
+                                <p class="text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '-'"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        @if($hasCerts)
+        <style>
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
         <script>
-        (function() {
-            var current = 0;
-            var total = {{ $certCount }};
-            var track = document.getElementById('cert-track');
-            var prevBtn = document.getElementById('cert-prev');
-            var nextBtn = document.getElementById('cert-next');
-            var currentEl = document.getElementById('cert-current');
-            var autoTimer = null;
-
-            function updateNav() {
-                if (current <= 0) {
-                    prevBtn.classList.add('disabled');
-                } else {
-                    prevBtn.classList.remove('disabled');
-                }
-                if (current >= total - 1) {
-                    nextBtn.classList.add('disabled');
-                } else {
-                    nextBtn.classList.remove('disabled');
-                }
+            function certificationCarousel(items = []) {
+                return {
+                    items: Array.isArray(items) ? items : [],
+                    index: 0,
+                    isDragging: false,
+                    startX: 0,
+                    dragOffset: 0,
+                    currentTranslate: 0,
+                    isFlipped: {},
+                    init() {
+                        this.items.forEach((_, i) => {
+                            this.isFlipped[i] = false;
+                        });
+                        this.$nextTick(() => this.updateTranslate());
+                        window.addEventListener('resize', () => this.updateTranslate());
+                    },
+                    toggleFlip(i) {
+                        if (Math.abs(this.dragOffset) > 10) return;
+                        this.isFlipped[i] = !this.isFlipped[i];
+                    },
+                    containerWidth() {
+                        return this.$refs.container?.offsetWidth || 0;
+                    },
+                    updateTranslate() {
+                        this.currentTranslate = -this.index * this.containerWidth();
+                    },
+                    getClientX(e) {
+                        return e.touches ? e.touches[0].clientX : e.clientX;
+                    },
+                    dragStart(e) {
+                        if (this.items.length <= 1) return;
+                        this.isDragging = true;
+                        this.startX = this.getClientX(e);
+                        this.dragOffset = 0;
+                    },
+                    dragMove(e) {
+                        if (!this.isDragging) return;
+                        this.dragOffset = this.getClientX(e) - this.startX;
+                        this.currentTranslate = -this.index * this.containerWidth() + this.dragOffset;
+                    },
+                    dragEnd() {
+                        if (!this.isDragging) return;
+                        this.isDragging = false;
+                        const width = this.containerWidth();
+                        let newIndex = this.index;
+                        if (Math.abs(this.dragOffset) > width * 0.15) {
+                            newIndex = this.dragOffset > 0 ? this.index - 1 : this.index + 1;
+                        }
+                        this.goTo(newIndex);
+                    },
+                    goTo(i) {
+                        if (this.items.length === 0) return;
+                        this.index = Math.max(0, Math.min(this.items.length - 1, i));
+                        this.dragOffset = 0;
+                        this.updateTranslate();
+                        this.scrollThumbnails();
+                    },
+                    scrollThumbnails() {
+                        this.$nextTick(() => {
+                            const el = this.$refs.thumbnails;
+                            if (!el) return;
+                            const activeThumb = el.querySelectorAll('button')[this.index];
+                            if (activeThumb) {
+                                activeThumb.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'nearest',
+                                    inline: 'center'
+                                });
+                            }
+                        });
+                    },
+                };
             }
-
-            function goTo(index) {
-                if (index < 0) index = total - 1;
-                if (index >= total) index = 0;
-                current = index;
-                track.style.transform = 'translateX(-' + (current * 100) + '%)';
-                currentEl.textContent = String(current + 1).padStart(2, '0');
-                updateNav();
-            }
-
-            window.certNext = function() { goTo(current + 1); resetAuto(); };
-            window.certPrev = function() { goTo(current - 1); resetAuto(); };
-
-            function startAuto() {
-                autoTimer = setInterval(function() { goTo(current + 1); }, 4000);
-            }
-            function resetAuto() {
-                clearInterval(autoTimer);
-                startAuto();
-            }
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') { window.certPrev(); }
-                if (e.key === 'ArrowRight') { window.certNext(); }
-            });
-
-            var touchStartX = 0;
-            var viewport = document.querySelector('.cert-viewport');
-            if (viewport) {
-                viewport.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-                viewport.addEventListener('touchend', function(e) {
-                    var diff = touchStartX - e.changedTouches[0].clientX;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) window.certNext();
-                        else window.certPrev();
-                    }
-                }, { passive: true });
-            }
-
-            startAuto();
-            updateNav();
-        })();
         </script>
+        @else
+            <div class="max-w-7xl mx-auto text-center text-slate-400 py-10">Sertifikat akan ditambahkan.</div>
         @endif
     </section>
 
