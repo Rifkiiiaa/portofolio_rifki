@@ -52,10 +52,11 @@
 
     <style>
         * { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        html { scroll-padding-top: 5.5rem; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #F7F8FC; }
 
         .gradient-text {
-            background: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            background: linear-gradient(120deg, #4F46E5 0%, #6366F1 55%, #8B5CF6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -71,7 +72,7 @@
             inset: 0;
             border-radius: inherit;
             padding: 1px;
-            background: linear-gradient(135deg, #6366F1, #A855F7, #EC4899);
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -79,31 +80,64 @@
         }
 
         .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            border-color: #C7D2FE;
+            box-shadow: 0 18px 40px -18px rgba(15, 23, 42, 0.18);
         }
 
         .skill-pill {
             transition: all 0.2s ease;
         }
         .skill-pill:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, #6366F1, #818CF8);
+            transform: translateY(-1px);
+            background: #0F172A;
+            border-color: #0F172A;
             color: white;
         }
 
         .section-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: #6366F1;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            color: #4F46E5;
             font-weight: 600;
+            text-transform: uppercase;
+        }
+        .section-number::after {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.5;
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+            background-size: 56px 56px;
+            -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+            mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+        }
+
+        .surface {
+            background: #fff;
+            border: 1px solid #E2E8F0;
+            border-radius: 1rem;
         }
 
         ::selection { background: #C7D2FE; color: #312E81; }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid #6366F1;
+            outline-offset: 2px;
+        }
 
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
@@ -116,15 +150,20 @@
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #6366F1, #A855F7);
+            background: #4F46E5;
+            border-radius: 2px;
             transition: width 0.3s ease;
         }
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
+        }
+        .nav-link.active {
+            color: #4F46E5;
         }
 
         </style>

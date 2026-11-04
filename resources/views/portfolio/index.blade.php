@@ -3,48 +3,48 @@
 @section('content')
 
     {{-- ===================== NAVBAR ===================== --}}
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
-        <div class="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/70">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 h-16 md:h-[72px] flex items-center justify-between">
             {{-- Brand --}}
-            <a href="#top" class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand to-purple-500 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">iC</span>
+            <a href="#top" class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-navy flex items-center justify-center shadow-sm">
+                    <span class="text-white font-bold text-sm tracking-tight">iC</span>
                 </div>
-                <span class="font-display font-bold text-lg text-navy">Iki<span class="gradient-text">Code</span></span>
+                <span class="font-display font-bold text-lg text-navy tracking-tight">Iki<span class="text-brand">Code</span></span>
             </a>
 
             {{-- Desktop Nav --}}
-            <nav class="hidden md:flex items-center gap-6">
-                <a href="#tentang" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Tentang</a>
-                <a href="#pendidikan" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Pendidikan</a>
-                <a href="#achievements" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Sertifikat</a>
-                <a href="#pengalaman" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Pengalaman</a>
-                <a href="#keahlian" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Keahlian</a>
-                <a href="#portofolio" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Proyek</a>
-                <a href="#jasa" class="nav-link text-sm font-medium text-slate-600 hover:text-brand">Jasa</a>
-                <a href="#kontak" class="ml-2 px-5 py-2 bg-gradient-to-r from-brand to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-brand/30 transition-all">
+            <nav class="hidden lg:flex items-center gap-7">
+                <a href="#tentang" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Tentang</a>
+                <a href="#pendidikan" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Pendidikan</a>
+                <a href="#Sertifikat & Kredensial" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Sertifikat</a>
+                <a href="#pengalaman" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Pengalaman</a>
+                <a href="#keahlian" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Keahlian</a>
+                <a href="#portofolio" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Proyek</a>
+                <a href="#jasa" class="nav-link text-[13px] font-medium text-slate-600 hover:text-brand">Jasa</a>
+                <a href="#kontak" class="ml-1 px-5 py-2.5 bg-navy text-white text-[13px] font-semibold rounded-xl hover:bg-brand transition-colors shadow-sm">
                     Hubungi Saya
                 </a>
             </nav>
 
             {{-- Mobile Toggle --}}
-            <button id="menu-toggle" class="md:hidden p-2 text-slate-600 hover:text-brand transition-colors" aria-label="Menu">
+            <button id="menu-toggle" class="lg:hidden p-2 -mr-2 text-slate-700 hover:text-brand transition-colors" aria-label="Menu">
                 <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
 
         {{-- Mobile Menu --}}
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-4">
-            <div class="flex flex-col gap-2">
-                <a href="#tentang" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Tentang</a>
-                <a href="#pendidikan" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Pendidikan</a>
-                <a href="#achievements" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Sertifikat</a>
-                <a href="#pengalaman" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Pengalaman</a>
-                <a href="#keahlian" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Keahlian</a>
-                <a href="#portofolio" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Proyek</a>
-                <a href="#jasa" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-brand/5 hover:text-brand transition-colors">Jasa</a>
-                <a href="#kontak" class="mt-2 px-4 py-2.5 bg-gradient-to-r from-brand to-purple-500 text-white text-sm font-semibold rounded-xl text-center">Hubungi Saya</a>
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 py-4 shadow-xl shadow-slate-900/5">
+            <div class="flex flex-col gap-1">
+                <a href="#tentang" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Tentang</a>
+                <a href="#pendidikan" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Pendidikan</a>
+                <a href="#Sertifikat & Kredensial" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Sertifikat</a>
+                <a href="#pengalaman" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Pengalaman</a>
+                <a href="#keahlian" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Keahlian</a>
+                <a href="#portofolio" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Proyek</a>
+                <a href="#jasa" class="px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors">Jasa</a>
+                <a href="#kontak" class="mt-2 px-4 py-3 bg-navy text-white text-sm font-semibold rounded-xl text-center hover:bg-brand transition-colors">Hubungi Saya</a>
             </div>
         </div>
     </header>
@@ -52,102 +52,127 @@
     <div id="top"></div>
 
     {{-- ===================== HERO ===================== --}}
-    <section class="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section class="relative overflow-hidden bg-navy text-white pt-28 pb-16 md:pt-36 md:pb-20">
         {{-- Background Decoration --}}
+        <div class="absolute inset-0 hero-grid opacity-60 pointer-events-none"></div>
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-gradient-to-br from-brand/20 to-purple-500/20 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-pink-500/10 to-brand/10 rounded-full blur-3xl"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-brand/5 to-purple-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute -top-32 right-0 w-[560px] h-[560px] bg-brand/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-32 w-[420px] h-[420px] bg-purple-500/10 rounded-full blur-3xl"></div>
         </div>
 
-        <div class="relative max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-[1fr_0.8fr] gap-12 md:gap-16 items-center w-full">
+        <div class="relative max-w-6xl mx-auto px-4 md:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center w-full">
             <div class="animate-slide-up">
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full mb-6">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span class="text-sm font-medium text-brand">Fresh Graduate</span>
+                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-white/5 border border-white/10 rounded-full mb-7">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
+                    <span class="text-xs font-medium text-white/70 tracking-wide">Terbuka untuk peluang baru</span>
                 </div>
 
-                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-navy leading-[1.1] mb-4">
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.08] tracking-tight mb-5">
                     Halo, saya<br>
-                    <span class="gradient-text">{{ $profile['name'] }}</span>
+                    <span class="bg-gradient-to-r from-brand-light via-indigo-300 to-purple-300 bg-clip-text text-transparent">{{ $profile['name'] }}</span>
                 </h1>
 
-                <p class="text-lg md:text-xl text-slate-500 font-medium mb-2">{{ $profile['role'] }}</p>
-                <p class="text-sm font-mono text-slate-400 mb-6">📍 {{ $profile['location'] }}</p>
-                <p class="text-base leading-relaxed text-slate-600 max-w-lg mb-8">{{ $profile['bio'] }}</p>
+                <p class="text-lg md:text-xl text-white/85 font-medium mb-3">{{ $profile['role'] }}</p>
+                <p class="text-sm text-white/45 mb-6 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    {{ $profile['location'] }}
+                </p>
+                <p class="text-base leading-relaxed text-white/55 max-w-xl mb-8">{{ $profile['bio'] }}</p>
 
-                <div class="flex flex-wrap gap-3 mb-8">
-                    <a href="#portofolio" class="px-6 py-3 bg-gradient-to-r from-brand to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-xl hover:shadow-brand/30 transition-all hover:-translate-y-0.5">
+                <div class="flex flex-wrap gap-3 mb-9">
+                    <a href="#portofolio" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-navy text-sm font-semibold rounded-xl hover:bg-slate-100 transition-colors">
                         Lihat Proyek
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </a>
                     @if(!empty($profile['cv_path']))
                         <a href="{{ route('file.show', $profile['cv_path']) }}" download
-                           class="px-6 py-3 border-2 border-slate-200 text-slate-700 text-sm font-semibold rounded-full hover:border-brand hover:text-brand transition-all hover:-translate-y-0.5">
+                           class="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white text-sm font-semibold rounded-xl hover:bg-white/10 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             Unduh CV
                         </a>
                     @endif
                 </div>
 
-                <div class="flex flex-wrap items-center gap-3">
-                    <a href="mailto:{{ $profile['email'] }}" class="text-sm text-slate-500 hover:text-brand transition-colors font-mono">{{ $profile['email'] }}</a>
-                    @if(!empty($profile['socials']['github']))
-                        <a href="{{ $profile['socials']['github'] }}" target="_blank" class="inline-flex items-center gap-1.5 w-9 h-9 rounded-full bg-slate-100 justify-center text-slate-500 hover:bg-[#24292F] hover:text-white transition-all group" title="GitHub">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            <span class="hidden group-hover:inline text-[10px] font-semibold absolute -bottom-5 bg-navy text-white px-1.5 py-0.5 rounded">GitHub</span>
-                        </a>
-                    @endif
-                    @if(!empty($profile['socials']['linkedin']))
-                        <a href="{{ $profile['socials']['linkedin'] }}" target="_blank" class="inline-flex items-center gap-1.5 w-9 h-9 rounded-full bg-slate-100 justify-center text-slate-500 hover:bg-[#0A66C2] hover:text-white transition-all group" title="LinkedIn">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                            <span class="hidden group-hover:inline text-[10px] font-semibold absolute -bottom-5 bg-navy text-white px-1.5 py-0.5 rounded">LinkedIn</span>
-                        </a>
-                    @endif
-                    @if(!empty($profile['socials']['instagram']))
-                        <a href="{{ $profile['socials']['instagram'] }}" target="_blank" class="inline-flex items-center gap-1.5 w-9 h-9 rounded-full bg-slate-100 justify-center text-slate-500 hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] hover:text-white transition-all group" title="Instagram">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            <span class="hidden group-hover:inline text-[10px] font-semibold absolute -bottom-5 bg-navy text-white px-1.5 py-0.5 rounded">Instagram</span>
-                        </a>
-                    @endif
-                    @if(!empty($profile['socials']['tiktok']))
-                        <a href="{{ $profile['socials']['tiktok'] }}" target="_blank" class="inline-flex items-center gap-1.5 w-9 h-9 rounded-full bg-slate-100 justify-center text-slate-500 hover:bg-[#000000] hover:text-white transition-all group" title="TikTok">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13.2a8.16 8.16 0 005.58 2.16v-3.44a4.85 4.85 0 01-3.77-1.58V6.69h3.77z"/></svg>
-                            <span class="hidden group-hover:inline text-[10px] font-semibold absolute -bottom-5 bg-navy text-white px-1.5 py-0.5 rounded">TikTok</span>
-                        </a>
-                    @endif
-                    @if(!empty($profile['socials']['whatsapp']))
-                        <a href="{{ $profile['socials']['whatsapp'] }}" target="_blank" class="inline-flex items-center gap-1.5 w-9 h-9 rounded-full bg-slate-100 justify-center text-slate-500 hover:bg-[#25D366] hover:text-white transition-all group" title="WhatsApp">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            <span class="hidden group-hover:inline text-[10px] font-semibold absolute -bottom-5 bg-navy text-white px-1.5 py-0.5 rounded">WhatsApp</span>
-                        </a>
-                    @endif
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="mailto:{{ $profile['email'] }}" class="text-sm text-white/55 hover:text-white transition-colors">{{ $profile['email'] }}</a>
+                    <span class="w-px h-4 bg-white/15"></span>
+                    <div class="flex items-center gap-2">
+                        @if(!empty($profile['socials']['github']))
+                            <a href="{{ $profile['socials']['github'] }}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/5 text-white/60 hover:bg-white hover:text-navy transition-all" title="GitHub">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                        @endif
+                        @if(!empty($profile['socials']['linkedin']))
+                            <a href="{{ $profile['socials']['linkedin'] }}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/5 text-white/60 hover:bg-white hover:text-navy transition-all" title="LinkedIn">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        @endif
+                        @if(!empty($profile['socials']['instagram']))
+                            <a href="{{ $profile['socials']['instagram'] }}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/5 text-white/60 hover:bg-white hover:text-navy transition-all" title="Instagram">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            </a>
+                        @endif
+                        @if(!empty($profile['socials']['tiktok']))
+                            <a href="{{ $profile['socials']['tiktok'] }}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/5 text-white/60 hover:bg-white hover:text-navy transition-all" title="TikTok">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13.2a8.16 8.16 0 005.58 2.16v-3.44a4.85 4.85 0 01-3.77-1.58V6.69h3.77z"/></svg>
+                            </a>
+                        @endif
+                        @if(!empty($profile['socials']['whatsapp']))
+                            <a href="{{ $profile['socials']['whatsapp'] }}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/5 text-white/60 hover:bg-white hover:text-navy transition-all" title="WhatsApp">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
 
             {{-- Photo --}}
-            <div class="flex justify-center md:justify-end animate-slide-left">
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-gradient-to-br from-brand to-purple-500 rounded-3xl blur-2xl opacity-20 animate-glow"></div>
-                    <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-3xl overflow-hidden bg-gradient-to-br from-brand to-purple-500 p-1">
-                        <div class="w-full h-full rounded-3xl overflow-hidden bg-paper-2 flex items-center justify-center">
+            <div class="flex justify-center lg:justify-end animate-slide-left">
+                <div class="relative w-full max-w-[360px]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-brand/40 to-purple-500/20 rounded-[2rem] blur-2xl opacity-40"></div>
+                    <div class="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 p-2">
+                        <div class="w-full h-full rounded-[1.6rem] overflow-hidden bg-navy2 flex items-center justify-center">
                             @if(!empty($profile['photo']))
                                 <img src="{{ route('file.show', $profile['photo']) }}" alt="Foto {{ $profile['name'] }}" class="w-full h-full object-cover">
                             @else
-                                <span class="font-display text-5xl md:text-6xl font-bold gradient-text">
+                                <span class="font-display text-6xl font-bold bg-gradient-to-br from-brand-light to-purple-300 bg-clip-text text-transparent">
                                     {{ collect(explode(' ', $profile['name']))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}
                                 </span>
                             @endif
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-5 -left-5 bg-white text-navy rounded-2xl px-4 py-3 shadow-xl shadow-black/20 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Status</p>
+                            <p class="text-sm font-semibold">Tersedia</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- Scroll indicator --}}
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-            <a href="#tentang" class="flex flex-col items-center gap-2 text-slate-400 hover:text-brand transition-colors">
-                <span class="text-xs font-mono">Scroll</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-            </a>
+        {{-- Stats --}}
+        <div class="relative max-w-6xl mx-auto px-4 md:px-6 mt-14 md:mt-16">
+            <div class="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-8">
+                <div class="px-2 md:px-6 text-center md:text-left">
+                    <p class="font-display text-2xl md:text-3xl font-bold">{{ count($projects) }}<span class="text-brand-light">+</span></p>
+                    <p class="text-[11px] md:text-xs uppercase tracking-wider text-white/40 mt-1">Proyek</p>
+                </div>
+                <div class="px-2 md:px-6 text-center md:text-left">
+                    <p class="font-display text-2xl md:text-3xl font-bold">{{ count($experiences) }}<span class="text-brand-light">+</span></p>
+                    <p class="text-[11px] md:text-xs uppercase tracking-wider text-white/40 mt-1">Pengalaman</p>
+                </div>
+                <div class="px-2 md:px-6 text-center md:text-left">
+                    <p class="font-display text-2xl md:text-3xl font-bold">{{ count($certifications) }}<span class="text-brand-light">+</span></p>
+                    <p class="text-[11px] md:text-xs uppercase tracking-wider text-white/40 mt-1">Sertifikat</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -156,41 +181,42 @@
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                 <div class="animate-on-scroll">
-                    <span class="section-number">01</span>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-6">Tentang Saya</h2>
-                    <p class="text-slate-600 leading-relaxed mb-6">{{ $profile['bio'] }}</p>
-                    <div class="flex flex-wrap gap-3">
-                        <div class="flex items-center gap-2 px-4 py-2 bg-brand/5 rounded-full">
+                    <span class="section-number">01 — Tentang</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-6 tracking-tight">Tentang Saya</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">{{ $profile['bio'] }}</p>
+                    @if(!empty($profile['tagline']))
+                        <p class="text-slate-500 leading-relaxed mb-6">{{ $profile['tagline'] }}</p>
+                    @endif
+                    <div class="flex flex-wrap gap-2.5">
+                        <div class="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 rounded-lg">
                             <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             <span class="text-sm font-medium text-slate-600">{{ $profile['location'] }}</span>
                         </div>
-                        <div class="flex items-center gap-2 px-4 py-2 bg-green-500/5 rounded-full">
-                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <div class="flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 rounded-lg">
+                            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
                             <span class="text-sm font-medium text-slate-600">Tersedia</span>
                         </div>
                     </div>
                 </div>
                 <div class="animate-on-scroll">
-                    <div class="relative overflow-hidden p-8 md:p-10 rounded-3xl border border-slate-100 bg-gradient-to-br from-brand/5 via-white to-purple-500/5 card-hover">
-                        <div class="absolute -top-16 -right-16 w-40 h-40 bg-gradient-to-br from-brand/20 to-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
-                        <div class="relative">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand to-purple-500 flex items-center justify-center mb-6 shadow-lg shadow-brand/20">
-                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                            </div>
-                            <h3 class="font-display text-xl font-bold text-navy mb-2">Curriculum Vitae</h3>
-                            <p class="text-sm text-slate-500 leading-relaxed mb-6">Lihat riwayat lengkap pendidikan, pengalaman, dan keahlian saya secara detail.</p>
-                            @if(!empty($profile['cv_path']))
-                                <a href="{{ route('file.show', $profile['cv_path']) }}" target="_blank"
-                                   class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-xl hover:shadow-brand/30 transition-all hover:-translate-y-0.5">
-                                    Lihat CV Saya
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                                </a>
-                            @else
-                                <span class="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 text-slate-400 text-sm font-semibold rounded-full cursor-not-allowed">
-                                    Lihat CV Saya
-                                </span>
-                            @endif
+                    <div class="relative overflow-hidden p-8 md:p-9 rounded-2xl border border-slate-200 bg-white">
+                        <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-brand to-purple-500"></div>
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         </div>
+                        <h3 class="font-display text-lg font-bold text-navy mb-2">Curriculum Vitae</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed mb-6">Lihat riwayat lengkap pendidikan, pengalaman, dan keahlian saya secara detail.</p>
+                        @if(!empty($profile['cv_path']))
+                            <a href="{{ route('file.show', $profile['cv_path']) }}" target="_blank"
+                               class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white text-sm font-semibold rounded-lg hover:bg-brand transition-colors">
+                                Lihat CV Saya
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </a>
+                        @else
+                            <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-100 text-slate-400 text-sm font-semibold rounded-lg cursor-not-allowed">
+                                Lihat CV Saya
+                            </span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -201,20 +227,20 @@
     <section id="pendidikan" class="py-20 md:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">02</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Riwayat Pendidikan</h2>
+                <span class="section-number">02 — Pendidikan</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-4 tracking-tight">Riwayat Pendidikan</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Pendidikan formal yang telah saya tempuh</p>
             </div>
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 @forelse($educations as $index => $edu)
-                    <div class="relative pl-8 pb-10 {{ !$loop->last ? 'border-l-2 border-slate-200' : 'border-l-2 border-transparent' }}">
-                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gradient-to-br from-brand to-purple-500 border-4 border-white shadow-sm"></div>
-                        <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 p-6 card-hover">
+                    <div class="relative pl-8 pb-8 {{ !$loop->last ? 'border-l border-slate-200' : 'border-l border-transparent' }}">
+                        <div class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand ring-4 ring-white"></div>
+                        <div class="bg-white rounded-xl border border-slate-200 p-6 card-hover">
                             <div class="flex flex-wrap items-center gap-2 mb-2">
                                 <h3 class="font-display text-lg font-bold text-navy">{{ $edu['institution'] }}</h3>
                                 @if(!empty($edu['start_year']))
-                                    <span class="font-mono text-xs text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
+                                    <span class="font-mono text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
                                         {{ $edu['start_year'] }} — {{ $edu['end_year'] ?? 'Sekarang' }}
                                     </span>
                                 @endif
@@ -237,7 +263,7 @@
     </section>
 
     {{-- ===================== SERTIFIKAT ===================== --}}
-    <section id="achievements" class="relative bg-slate-950 overflow-hidden px-6 md:px-16 pt-16 pb-16">
+    <section id="Sertifikat & Kredensial" class="relative bg-slate-950 overflow-hidden px-6 md:px-16 py-20 md:py-28">
         <div class="absolute top-10 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -265,7 +291,11 @@
             $itemsJson = $certs->toJson();
         @endphp
 
-        <div class="border-t border-slate-800/80 w-full max-w-7xl mx-auto mb-16"></div>
+        <div class="relative max-w-7xl mx-auto text-center mb-12 animate-on-scroll">
+            <span class="section-number text-brand-light">03 — Sertifikat</span>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white mt-4 mb-4 tracking-tight">Sertifikat & Kredensial</h2>
+            <p class="text-white/45 max-w-lg mx-auto">Bukti pembelajaran dan pencapaian profesional</p>
+        </div>
 
         @if($hasCerts)
         <div 
@@ -276,7 +306,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 <div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:hidden">
                     <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
-                        Achievements
+                        Sertifikat & Kredensial
                     </span>
                 </div>
                 <div class="lg:col-span-7 w-full lg:order-2">
@@ -398,7 +428,7 @@
                 <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:order-1">
                     <div class="hidden lg:block">
                         <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
-                            Achievements
+                            Sertifikat & Kredensial
                         </span>
                     </div>
                     <div class="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-left">
@@ -563,31 +593,31 @@
     <section id="pengalaman" class="py-20 md:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">04</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Pengalaman Kerja & Magang</h2>
+                <span class="section-number">04 — Pengalaman</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-4 tracking-tight">Pengalaman Kerja & Magang</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Riwayat pekerjaan dan pengalaman profesional saya</p>
             </div>
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 @forelse($experiences as $index => $exp)
-                    <div class="relative pl-8 pb-10 {{ !$loop->last ? 'border-l-2 border-slate-200' : 'border-l-2 border-transparent' }}">
-                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 border-4 border-white shadow-sm"></div>
-                        <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 p-6 card-hover">
+                    <div class="relative pl-8 pb-8 {{ !$loop->last ? 'border-l border-slate-200' : 'border-l border-transparent' }}">
+                        <div class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-navy ring-4 ring-white"></div>
+                        <div class="bg-white rounded-xl border border-slate-200 p-6 card-hover">
                             <div class="flex items-start gap-4">
                                 @if(!empty($exp['logo']))
-                                    <div class="w-12 h-12 rounded-xl overflow-hidden bg-white flex-shrink-0 border border-slate-100">
+                                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-white flex-shrink-0 border border-slate-200">
                                         <img src="{{ route('file.show', $exp['logo']) }}" alt="{{ $exp['company'] }}" class="w-full h-full object-contain p-1">
                                     </div>
                                 @else
-                                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                     </div>
                                 @endif
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-wrap items-center gap-2 mb-1">
                                         <h3 class="font-display text-lg font-bold text-navy">{{ $exp['company'] }}</h3>
                                         @if(!empty($exp['start_date']))
-                                            <span class="font-mono text-xs text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
+                                            <span class="font-mono text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
                                                 {{ $exp['start_date'] }} — {{ $exp['end_date'] ?? 'Sekarang' }}
                                             </span>
                                         @endif
@@ -610,11 +640,11 @@
     </section>
 
     {{-- ===================== KEAHLIAN ===================== --}}
-    <section id="keahlian" class="py-20 md:py-28 bg-white">
+    <section id="keahlian" class="py-20 md:py-28">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">05</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Keahlian</h2>
+                <span class="section-number">05 — Keahlian</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-4 tracking-tight">Keahlian</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Kemampuan teknis dan interpersonal yang saya miliki</p>
             </div>
 
@@ -638,7 +668,7 @@
                 @if($hardSkills->isNotEmpty())
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($hardSkills as $group => $items)
-                            <div class="p-6 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 card-hover">
+                            <div class="p-6 bg-white rounded-xl border border-slate-200 card-hover">
                                 <div class="flex items-center gap-3 mb-4">
                                     <div class="w-8 h-8 rounded-lg
                                         {{ $group === 'Backend' ? 'bg-brand/10 text-brand' : ($group === 'Frontend' ? 'bg-purple-500/10 text-purple-500' : 'bg-amber-500/10 text-amber-500') }}
@@ -681,7 +711,7 @@
                 @if($softSkills->isNotEmpty())
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($softSkills as $group => $items)
-                            <div class="p-6 bg-gradient-to-br from-emerald-50/60 to-white rounded-2xl border border-emerald-100/70 card-hover">
+                            <div class="p-6 bg-white rounded-xl border border-slate-200 card-hover">
                                 <div class="flex items-center gap-3 mb-4">
                                     <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
                                         @if($group === 'Komunikasi & Kolaborasi')
@@ -710,64 +740,80 @@
     </section>
 
     {{-- ===================== PORTOFOLIO ===================== --}}
-    <section id="portofolio" class="py-20 md:py-28">
+    <section id="portofolio" class="py-20 md:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">06</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Proyek Terpilih</h2>
+                <span class="section-number">06 — Proyek</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-4 tracking-tight">Proyek Terpilih</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Beberapa proyek yang telah saya kerjakan</p>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-6 animate-on-scroll">
-                @foreach($projects as $project)
-                    <a href="{{ $project['url'] }}" target="_blank" class="group block bg-white rounded-2xl border border-slate-100 overflow-hidden card-hover">
-                        <div class="h-2 bg-gradient-to-r from-brand to-purple-500"></div>
-                        <div class="p-6">
-                            <div class="flex items-start justify-between mb-3">
-                                <h3 class="font-display text-lg font-bold text-navy group-hover:text-brand transition-colors">{{ $project['title'] }}</h3>
-                                <span class="font-mono text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded-md">{{ $project['year'] }}</span>
+                @forelse($projects as $project)
+                    <a href="{{ $project['url'] }}" target="_blank" rel="noopener noreferrer" class="group flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden card-hover">
+                        <div class="relative h-32 bg-navy overflow-hidden">
+                            <div class="absolute inset-0 hero-grid opacity-40"></div>
+                            <span class="absolute -right-2 -bottom-6 font-display text-8xl font-extrabold text-white/5 select-none">
+                                {{ collect(explode(' ', $project['title']))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}
+                            </span>
+                            @if(!empty($project['year']))
+                                <span class="absolute top-4 right-4 font-mono text-[11px] text-white/70 border border-white/15 bg-white/5 px-2 py-1 rounded-md">{{ $project['year'] }}</span>
+                            @endif
+                            <div class="absolute bottom-4 left-4 w-9 h-9 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-navy transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                             </div>
-                            <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ $project['summary'] }}</p>
-                            <div class="flex flex-wrap gap-2">
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="font-display text-lg font-bold text-navy group-hover:text-brand transition-colors mb-2">{{ $project['title'] }}</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-5 flex-1">{{ $project['summary'] }}</p>
+                            <div class="flex flex-wrap gap-1.5">
                                 @foreach($project['stack'] as $tech)
-                                    <span class="font-mono text-[11px] font-medium text-brand bg-brand/5 px-2.5 py-1 rounded-md">{{ $tech }}</span>
+                                    <span class="font-mono text-[11px] font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">{{ $tech }}</span>
                                 @endforeach
                             </div>
                         </div>
                     </a>
-                @endforeach
+                @empty
+                    <p class="text-center text-slate-400 col-span-2 py-10">Proyek akan ditambahkan.</p>
+                @endforelse
             </div>
         </div>
     </section>
 
     {{-- ===================== JASA ===================== --}}
-    <section id="jasa" class="py-20 md:py-28 bg-gradient-to-br from-navy to-navy2 text-white relative overflow-hidden">
+    <section id="jasa" class="py-20 md:py-28 bg-navy text-white relative overflow-hidden">
+        <div class="absolute inset-0 hero-grid opacity-40 pointer-events-none"></div>
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-brand/20 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -top-20 right-0 w-[420px] h-[420px] bg-brand/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-32 left-0 w-[320px] h-[320px] bg-purple-500/10 rounded-full blur-3xl"></div>
         </div>
 
         <div class="relative max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number text-brand-light">07</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold mt-2 mb-4">Jasa Pembuatan Website</h2>
-                <p class="text-white/60 max-w-lg mx-auto">Siap membantu mewujudkan website impian Anda</p>
+                <span class="section-number text-brand-light">07 — Layanan</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 mb-4 tracking-tight">Jasa Pembuatan Website</h2>
+                <p class="text-white/55 max-w-lg mx-auto">Siap membantu mewujudkan website impian Anda</p>
             </div>
 
-            <div class="grid sm:grid-cols-3 gap-6 mb-10 animate-on-scroll">
-                @foreach($services as $service)
-                    <div class="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 card-hover hover:bg-white/10">
-                        <div class="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center mb-4">
-                            <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            <div class="grid sm:grid-cols-3 gap-5 mb-10 animate-on-scroll">
+                @forelse($services as $service)
+                    <div class="p-6 bg-white/[0.04] rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/[0.07] transition-colors">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            </div>
+                            <span class="font-mono text-xs text-white/25">0{{ $loop->iteration }}</span>
                         </div>
-                        <h3 class="font-display font-bold text-lg mb-2">{{ $service['title'] }}</h3>
-                        <p class="text-sm text-white/60 leading-relaxed">{{ $service['description'] }}</p>
+                        <h3 class="font-display font-semibold text-lg mb-2">{{ $service['title'] }}</h3>
+                        <p class="text-sm text-white/55 leading-relaxed">{{ $service['description'] }}</p>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-center text-white/40 sm:col-span-3 py-6">Layanan akan ditambahkan.</p>
+                @endforelse
             </div>
 
             <div class="text-center animate-on-scroll">
-                <a href="#kontak" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand to-purple-500 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-brand/30 transition-all hover:-translate-y-0.5">
+                <a href="#kontak" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-navy font-semibold rounded-xl hover:bg-slate-100 transition-colors">
                     Mulai Diskusi
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
@@ -779,8 +825,8 @@
     <section id="kontak" class="py-20 md:py-28">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">08</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Hubungi Saya</h2>
+                <span class="section-number">08 — Kontak</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-4 tracking-tight">Hubungi Saya</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Punya proyek atau pertanyaan? Kirim pesan.</p>
             </div>
 
@@ -795,23 +841,23 @@
                 $waPhone = preg_replace('/[^0-9]/', '', $profile['phone'] ?? '');
             @endphp
             <div class="grid md:grid-cols-2 gap-10 md:gap-16 animate-on-scroll">
-                <form id="waForm" autocomplete="off" class="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                <form id="waForm" autocomplete="off" class="bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-5">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-slate-700 mb-1.5">Nama</label>
+                        <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama</label>
                         <input type="text" id="name" name="name" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                            class="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/15 focus:border-brand transition-all">
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email</label>
                         <input type="email" id="email" name="email" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all">
+                            class="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/15 focus:border-brand transition-all">
                     </div>
                     <div>
-                        <label for="message" class="block text-sm font-medium text-slate-700 mb-1.5">Pesan</label>
+                        <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Pesan</label>
                         <textarea id="message" name="message" rows="5" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all"></textarea>
+                            class="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/15 focus:border-brand transition-all"></textarea>
                     </div>
-                    <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-brand to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-brand/30 transition-all flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full px-6 py-3 bg-navy text-white text-sm font-semibold rounded-lg hover:bg-brand transition-colors flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                         Kirim via WhatsApp
                     </button>
@@ -835,33 +881,43 @@
                     });
                 </script>
 
-                <div class="flex flex-col justify-center gap-6">
-                    <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100">
-                        <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 mb-0.5">Email</p>
-                            <p class="text-sm font-medium text-navy">{{ $profile['email'] }}</p>
+                <div class="flex flex-col justify-center">
+                    <h3 class="font-display text-xl font-bold text-navy mb-2">Informasi Kontak</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Silakan hubungi saya melalui salah satu kanal di bawah ini.</p>
+
+                    <div class="space-y-3">
+                        <a href="mailto:{{ $profile['email'] }}" class="group flex items-start gap-4 p-5 bg-white rounded-xl border border-slate-200 hover:border-brand/40 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Email</p>
+                                <p class="text-sm font-medium text-navy group-hover:text-brand transition-colors truncate">{{ $profile['email'] }}</p>
+                            </div>
+                        </a>
+                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $profile['phone'] ?? '') }}" class="group flex items-start gap-4 p-5 bg-white rounded-xl border border-slate-200 hover:border-brand/40 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Telepon</p>
+                                <p class="text-sm font-medium text-navy group-hover:text-brand transition-colors">{{ $profile['phone'] }}</p>
+                            </div>
+                        </a>
+                        <div class="flex items-start gap-4 p-5 bg-white rounded-xl border border-slate-200">
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Lokasi</p>
+                                <p class="text-sm font-medium text-navy">{{ $profile['location'] }}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100">
-                        <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 mb-0.5">Telepon</p>
-                            <p class="text-sm font-medium text-navy">{{ $profile['phone'] }}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 mb-0.5">Lokasi</p>
-                            <p class="text-sm font-medium text-navy">{{ $profile['location'] }}</p>
-                        </div>
+
+                    <div class="mt-4 flex items-center gap-2 px-4 py-3 bg-emerald-50 border border-emerald-100 rounded-lg">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                        <p class="text-xs font-medium text-emerald-700">Biasanya merespons dalam 1×24 jam</p>
                     </div>
                 </div>
             </div>
@@ -869,16 +925,45 @@
     </section>
 
     {{-- ===================== FOOTER ===================== --}}
-    <footer class="bg-navy text-white py-10">
-        <div class="max-w-6xl mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
-                    <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-brand to-purple-500 flex items-center justify-center">
-                        <span class="text-white font-bold text-xs">iC</span>
-                    </div>
-                    <span class="font-display font-bold">Iki<span class="text-brand-light">Code</span></span>
+    <footer class="bg-navy text-white">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 pb-8 border-b border-white/10">
+                <div class="max-w-sm">
+                    <a href="#top" class="flex items-center gap-2.5 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
+                            <span class="text-navy font-bold text-xs tracking-tight">iC</span>
+                        </div>
+                        <span class="font-display font-bold">Iki<span class="text-brand-light">Code</span></span>
+                    </a>
+                    <p class="text-sm text-white/45 leading-relaxed">{{ $profile['tagline'] ?: 'Portfolio pribadi dan layanan pembuatan website.' }}</p>
                 </div>
-                <p class="text-sm text-white/40">&copy; {{ date('Y') }} IkiCode. Dibangun dengan Laravel.</p>
+
+                <nav class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 gap-x-10 gap-y-2 text-sm">
+                    <a href="#tentang" class="text-white/50 hover:text-white transition-colors">Tentang</a>
+                    <a href="#pendidikan" class="text-white/50 hover:text-white transition-colors">Pendidikan</a>
+                    <a href="#pengalaman" class="text-white/50 hover:text-white transition-colors">Pengalaman</a>
+                    <a href="#keahlian" class="text-white/50 hover:text-white transition-colors">Keahlian</a>
+                    <a href="#portofolio" class="text-white/50 hover:text-white transition-colors">Proyek</a>
+                    <a href="#jasa" class="text-white/50 hover:text-white transition-colors">Jasa</a>
+                    <a href="#kontak" class="text-white/50 hover:text-white transition-colors">Kontak</a>
+                </nav>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
+                <p class="text-xs text-white/35">&copy; {{ date('Y') }} IkiCode. All rights reserved.</p>
+                <div class="flex items-center gap-2">
+                    @if(!empty($profile['socials']['github']))
+                        <a href="{{ $profile['socials']['github'] }}" target="_blank" class="text-xs text-white/45 hover:text-white transition-colors">GitHub</a>
+                        <span class="text-white/15">·</span>
+                    @endif
+                    @if(!empty($profile['socials']['linkedin']))
+                        <a href="{{ $profile['socials']['linkedin'] }}" target="_blank" class="text-xs text-white/45 hover:text-white transition-colors">LinkedIn</a>
+                        <span class="text-white/15">·</span>
+                    @endif
+                    @if(!empty($profile['socials']['instagram']))
+                        <a href="{{ $profile['socials']['instagram'] }}" target="_blank" class="text-xs text-white/45 hover:text-white transition-colors">Instagram</a>
+                    @endif
+                </div>
             </div>
         </div>
     </footer>
