@@ -170,34 +170,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4 animate-on-scroll">
-                    <div class="p-6 bg-white rounded-2xl border border-slate-100 card-hover">
-                        <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-3">
-                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                <div class="animate-on-scroll">
+                    <div class="relative overflow-hidden p-8 md:p-10 rounded-3xl border border-slate-100 bg-gradient-to-br from-brand/5 via-white to-purple-500/5 card-hover">
+                        <div class="absolute -top-16 -right-16 w-40 h-40 bg-gradient-to-br from-brand/20 to-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand to-purple-500 flex items-center justify-center mb-6 shadow-lg shadow-brand/20">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <h3 class="font-display text-xl font-bold text-navy mb-2">Curriculum Vitae</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-6">Lihat riwayat lengkap pendidikan, pengalaman, dan keahlian saya secara detail.</p>
+                            @if(!empty($profile['cv_path']))
+                                <a href="{{ route('file.show', $profile['cv_path']) }}" target="_blank"
+                                   class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-xl hover:shadow-brand/30 transition-all hover:-translate-y-0.5">
+                                    Lihat CV Saya
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </a>
+                            @else
+                                <span class="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 text-slate-400 text-sm font-semibold rounded-full cursor-not-allowed">
+                                    Lihat CV Saya
+                                </span>
+                            @endif
                         </div>
-                        <h3 class="font-display font-bold text-navy mb-1">Full-Stack</h3>
-                        <p class="text-xs text-slate-500">Web Developer</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-2xl border border-slate-100 card-hover">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-3">
-                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                        </div>
-                        <h3 class="font-display font-bold text-navy mb-1">Laravel</h3>
-                        <p class="text-xs text-slate-500">Specialist</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-2xl border border-slate-100 card-hover">
-                        <div class="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center mb-3">
-                            <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
-                        </div>
-                        <h3 class="font-display font-bold text-navy mb-1">Responsive</h3>
-                        <p class="text-xs text-slate-500">Design</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-2xl border border-slate-100 card-hover">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-3">
-                            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                        </div>
-                        <h3 class="font-display font-bold text-navy mb-1">Reliable</h3>
-                        <p class="text-xs text-slate-500">& Secure</p>
                     </div>
                 </div>
             </div>
@@ -782,48 +775,11 @@
         </div>
     </section>
 
-    {{-- ===================== TESTIMONI ===================== --}}
-    <section id="testimoni" class="py-20 md:py-28 bg-white">
-        <div class="max-w-6xl mx-auto px-4 md:px-6">
-            <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">08</span>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Apa Kata Klien</h2>
-                <p class="text-slate-500 max-w-lg mx-auto">Feedback dari klien yang puas</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-6 animate-on-scroll">
-                @forelse($testimonials as $t)
-                    <div class="p-6 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 card-hover">
-                        <div class="flex items-center gap-1 mb-4">
-                            @for($i = 0; $i < 5; $i++)
-                                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            @endfor
-                        </div>
-                        <blockquote class="text-slate-600 leading-relaxed mb-4">&ldquo;{{ $t['quote'] }}&rdquo;</blockquote>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand to-purple-500 flex items-center justify-center text-white font-bold text-sm">
-                                {{ mb_substr($t['name'], 0, 1) }}
-                            </div>
-                            <div>
-                                <p class="font-semibold text-navy text-sm">{{ $t['name'] }}</p>
-                                @if(!empty($t['role']))
-                                    <p class="text-xs text-slate-400">{{ $t['role'] }}</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <p class="text-center text-slate-400 col-span-2 py-10">Testimoni akan ditambahkan setelah proyek selesai.</p>
-                @endforelse
-            </div>
-        </div>
-    </section>
-
     {{-- ===================== KONTAK ===================== --}}
     <section id="kontak" class="py-20 md:py-28">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center mb-12 animate-on-scroll">
-                <span class="section-number">09</span>
+                <span class="section-number">08</span>
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Hubungi Saya</h2>
                 <p class="text-slate-500 max-w-lg mx-auto">Punya proyek atau pertanyaan? Kirim pesan.</p>
             </div>
