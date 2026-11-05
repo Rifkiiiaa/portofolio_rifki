@@ -57,15 +57,6 @@
             <p class="text-sm text-slate-500 mt-0.5">Proyek</p>
         </a>
 
-        <a href="{{ route('admin.testimonials') }}"
-           class="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:shadow-amber-500/5 hover:border-amber-500/20 transition-all">
-            <div class="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center mb-3 group-hover:bg-amber-500/20 transition-colors">
-                <svg class="w-4.5 h-4.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-            </div>
-            <p class="text-2xl font-bold text-navy">{{ $testimonialCount }}</p>
-            <p class="text-sm text-slate-500 mt-0.5">Testimoni</p>
-        </a>
-
         <a href="{{ route('admin.educations') }}"
            class="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-500/20 transition-all">
             <div class="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3 group-hover:bg-blue-500/20 transition-colors">

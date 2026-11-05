@@ -32,10 +32,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/projects/{project}', [AdminController::class, 'projectUpdate'])->name('projects.update');
     Route::delete('/projects/{project}', [AdminController::class, 'projectDestroy'])->name('projects.destroy');
 
-    Route::get('/testimonials', [AdminController::class, 'testimonialIndex'])->name('testimonials');
-    Route::post('/testimonials', [AdminController::class, 'testimonialStore'])->name('testimonials.store');
-    Route::delete('/testimonials/{testimonial}', [AdminController::class, 'testimonialDestroy'])->name('testimonials.destroy');
-
     Route::get('/services', [AdminController::class, 'serviceIndex'])->name('services');
     Route::post('/services', [AdminController::class, 'serviceStore'])->name('services.store');
     Route::get('/services/{service}/edit', [AdminController::class, 'serviceEdit'])->name('services.edit');

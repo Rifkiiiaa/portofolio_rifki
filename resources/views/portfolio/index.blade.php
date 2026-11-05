@@ -80,7 +80,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     {{ $profile['location'] }}
                 </p>
-                <p class="text-base leading-relaxed text-white/55 max-w-xl mb-8">{{ $profile['bio'] }}</p>
+                <p class="text-base leading-relaxed text-white/55 max-w-xl mb-8 whitespace-pre-line">{{ $profile['bio'] }}</p>
 
                 <div class="flex flex-wrap gap-3 mb-9">
                     <a href="#portofolio" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-navy text-sm font-semibold rounded-xl hover:bg-slate-100 transition-colors">
@@ -183,7 +183,7 @@
                 <div class="animate-on-scroll">
                     <span class="section-number">01 — Tentang</span>
                     <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mt-4 mb-6 tracking-tight">Tentang Saya</h2>
-                    <p class="text-slate-600 leading-relaxed mb-4">{{ $profile['bio'] }}</p>
+                    <p class="text-slate-600 leading-relaxed mb-4 whitespace-pre-line">{{ $profile['bio'] }}</p>
                     @if(!empty($profile['tagline']))
                         <p class="text-slate-500 leading-relaxed mb-6">{{ $profile['tagline'] }}</p>
                     @endif
@@ -251,7 +251,7 @@
                                 </p>
                             @endif
                             @if(!empty($edu['description']))
-                                <p class="text-sm text-slate-500 leading-relaxed mt-2">{{ $edu['description'] }}</p>
+                                <p class="text-sm text-slate-500 leading-relaxed mt-2 whitespace-pre-line">{{ $edu['description'] }}</p>
                             @endif
                         </div>
                     </div>
@@ -373,7 +373,7 @@
                                                         </div>
                                                         <h4 class="text-white font-bold text-base sm:text-lg line-clamp-2" x-text="item.title"></h4>
                                                         <p class="text-xs text-blue-400 font-medium" x-text="'Issued by: ' + (item.issuer || '-') + (item.issue_date ? ' (' + item.issue_date + ')' : '')"></p>
-                                                        <p class="text-gray-300 text-xs leading-relaxed line-clamp-3" x-text="item.description || 'Verified authentic credential certificate record.'"></p>
+                                                        <p class="text-gray-300 text-xs leading-relaxed line-clamp-3 whitespace-pre-line" x-text="item.description || 'Verified authentic credential certificate record.'"></p>
                                                     </div>
                                                 </template>
                                                 <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
@@ -626,7 +626,7 @@
                                         <p class="text-sm font-medium text-brand mb-1">{{ $exp['position'] }}</p>
                                     @endif
                                     @if(!empty($exp['description']))
-                                        <p class="text-sm text-slate-500 leading-relaxed mt-2">{{ $exp['description'] }}</p>
+                                        <p class="text-sm text-slate-500 leading-relaxed mt-2 whitespace-pre-line">{{ $exp['description'] }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -765,7 +765,7 @@
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <h3 class="font-display text-lg font-bold text-navy group-hover:text-brand transition-colors mb-2">{{ $project['title'] }}</h3>
-                            <p class="text-sm text-slate-500 leading-relaxed mb-5 flex-1">{{ $project['summary'] }}</p>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-5 flex-1 whitespace-pre-line">{{ $project['summary'] }}</p>
                             <div class="flex flex-wrap gap-1.5">
                                 @foreach($project['stack'] as $tech)
                                     <span class="font-mono text-[11px] font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">{{ $tech }}</span>
@@ -805,7 +805,7 @@
                             <span class="font-mono text-xs text-white/25">0{{ $loop->iteration }}</span>
                         </div>
                         <h3 class="font-display font-semibold text-lg mb-2">{{ $service['title'] }}</h3>
-                        <p class="text-sm text-white/55 leading-relaxed">{{ $service['description'] }}</p>
+                        <p class="text-sm text-white/55 leading-relaxed whitespace-pre-line">{{ $service['description'] }}</p>
                     </div>
                 @empty
                     <p class="text-center text-white/40 sm:col-span-3 py-6">Layanan akan ditambahkan.</p>

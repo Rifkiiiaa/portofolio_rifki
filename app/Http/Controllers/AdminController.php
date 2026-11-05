@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Skill;
 use App\Models\Project;
-use App\Models\Testimonial;
 use App\Models\Service;
 use App\Models\Education;
 use App\Models\Experience;
@@ -36,7 +35,6 @@ class AdminController extends Controller
             'profile'         => $profile,
             'skillCount'      => Skill::count(),
             'projectCount'    => Project::count(),
-            'testimonialCount'=> Testimonial::count(),
             'serviceCount'    => Service::count(),
             'educationCount'  => Education::count(),
             'certificationCount' => Certification::count(),
@@ -192,31 +190,6 @@ class AdminController extends Controller
     {
         $project->delete();
         return back()->with('success', 'Proyek berhasil dihapus.');
-    }
-
-    // ── Testimonials ─────────────────────────────
-    public function testimonialIndex()
-    {
-        return view('admin.testimonials', ['testimonials' => Testimonial::latest()->get()]);
-    }
-
-    public function testimonialStore(Request $request)
-    {
-        $data = $request->validate([
-            'name'  => ['required', 'string', 'max:100'],
-            'role'  => ['nullable', 'string', 'max:100'],
-            'quote' => ['required', 'string'],
-        ]);
-
-        Testimonial::create($data);
-
-        return back()->with('success', 'Testimoni berhasil ditambahkan.');
-    }
-
-    public function testimonialDestroy(Testimonial $testimonial)
-    {
-        $testimonial->delete();
-        return back()->with('success', 'Testimoni berhasil dihapus.');
     }
 
     // ── Services ─────────────────────────────────
